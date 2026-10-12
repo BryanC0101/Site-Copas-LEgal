@@ -60,6 +60,8 @@
             <nav class="abas" id="abas">
                 <button data-aba="posts" class="ativa">Publicações</button>
                 <button data-aba="editor">Nova publicação</button>
+                <button data-aba="ranking">Ranking de Copas</button>
+                <button data-aba="estatisticas">Estatísticas</button>
                 <button data-aba="aparencia">Aparência</button>
                 <button data-aba="conta">Conta</button>
             </nav>
@@ -153,6 +155,57 @@
                         <button type="button" class="secundario" id="btn-cancelar-post">Cancelar</button>
                     </div>
                 </form>
+            </section>
+
+            <!-- Ranking de Copas -->
+            <section id="aba-ranking" hidden>
+                <div class="barra-titulo">
+                    <h2>Ranking de Copas</h2>
+                    <button class="primario" type="button" id="btn-salvar-ranking">Salvar ranking</button>
+                </div>
+                <p class="ajuda">Use <strong>+</strong> quando uma seleção ganhar uma Copa do Mundo. Ao salvar, o ranking do
+                    site se reorganiza sozinho: quem tem mais copas fica por cima e, em caso de empate, fica na frente
+                    quem chegou àquele número primeiro. Seleções com 0 copas não aparecem no site. A ordem mostrada aqui só é atualizada depois de salvar.</p>
+                <p class="ok" id="ok-ranking"></p>
+                <p class="erro" id="erro-ranking"></p>
+
+                <form id="form-nova-selecao" class="cartao linha-nova" autocomplete="off">
+                    <h3>Adicionar seleção</h3>
+                    <div class="nova-grade">
+                        <label>Nome da seleção
+                            <input name="nome" maxlength="60" required>
+                        </label>
+                        <div class="campo-bandeira">
+                            <span class="rotulo">Bandeira</span>
+                            <div class="imagem-linha">
+                                <img id="nova-bandeira" class="bandeira-mini" alt="" hidden>
+                                <button type="button" class="secundario" id="btn-nova-bandeira">Escolher bandeira</button>
+                            </div>
+                        </div>
+                        <label>Copas
+                            <input name="copas" type="number" min="0" max="99" value="0">
+                        </label>
+                        <button type="submit" class="primario">Adicionar</button>
+                    </div>
+                    <p class="erro" data-erro></p>
+                </form>
+
+                <div id="lista-ranking" class="lista"></div>
+            </section>
+
+            <!-- Estatísticas dos jogadores -->
+            <section id="aba-estatisticas" hidden>
+                <div class="barra-titulo">
+                    <h2>Estatísticas dos jogadores</h2>
+                    <input id="busca-jogadores" type="search" placeholder="Buscar jogador…">
+                    <button class="secundario" type="button" id="btn-novo-jogador">+ Novo jogador</button>
+                    <button class="primario" type="button" id="btn-salvar-stats">Salvar estatísticas</button>
+                </div>
+                <p class="ajuda">Edite gols e assistências direto na tabela e clique em <strong>Salvar</strong>. Na página
+                    pública a ordem é automática: quem tem mais gols (ou assistências, conforme o filtro) fica por cima.</p>
+                <p class="ok" id="ok-stats"></p>
+                <p class="erro" id="erro-stats"></p>
+                <div id="lista-jogadores" class="lista"></div>
             </section>
 
             <!-- Aparência -->

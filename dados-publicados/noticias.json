@@ -112,25 +112,6 @@
     "tituloLista": ""
   },
   {
-    "id": 6,
-    "titulo": "Conheça mais sobre Johnny Schorros",
-    "data": "11 ago 2026",
-    "dataISO": "2026-08-11",
-    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
-    "imagem": "/images/johhnyfoto.png",
-    "resumo": "Em sua primeiro copa de sua curta carreira, Cláusio Goodbarras é condecorado com a bola de ouro",
-    "subtitulo": "",
-    "paragrafos": [
-      "",
-      ""
-    ],
-    "imagemInfo": "",
-    "legenda": "",
-    "destaque": false,
-    "publicado": true,
-    "tituloLista": ""
-  },
-  {
     "id": 7,
     "titulo": "Quem é o estreante, filho de Cláudio Goodbarras, a ganhar a Copa do Mundo?",
     "data": "11 ago 2026",
@@ -614,5 +595,23 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 26,
+    "titulo": "Entrevista com Andrey",
+    "tituloLista": "",
+    "data": "12 out 2026",
+    "dataISO": "2026-10-12",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/uploads/65aa31a0eaba065aa31a0eaba1170565264065aa-dbe0790f.webp",
+    "resumo": "",
+    "subtitulo": "Andrey M. Djangovsky nos fornece novas informações a respeito de sua carreira e sobre seu futuro",
+    "paragrafos": [
+      "Andrey"
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": true,
+    "publicado": false
   }
 ]

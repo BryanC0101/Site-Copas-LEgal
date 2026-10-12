@@ -26,6 +26,8 @@ Gere os dois segredos com um gerador seguro de senhas (32 bytes ou mais). Não o
 
 - `PUT /api/admin/config`: grava `dados-publicados/config.json` e cria um commit.
 - `POST/PUT/DELETE /api/admin/noticias`: grava `dados-publicados/noticias.json` e cria um commit.
+- `PUT /api/admin/ranking`: grava `dados-publicados/ranking.json` e cria um commit (leitura pública em `GET /api/ranking`).
+- `PUT /api/admin/estatisticas`: grava `dados-publicados/estatisticas.json` e cria um commit (leitura pública em `GET /api/estatisticas`).
 - `POST /api/admin/upload`: grava a imagem em `public/uploads/` e cria um commit. Por causa do limite de payload de funções serverless, uploads pelo painel são limitados a 3 MB por arquivo.
 - `POST /api/admin/senha`: salva a credencial cifrada em `dados-publicados/admin.enc.json`; o segredo de cifragem permanece somente nas variáveis de ambiente.
 - Cada commit na branch de produção aciona o deploy automático do Vercel, se a integração estiver conectada e os deployments automáticos estiverem habilitados.

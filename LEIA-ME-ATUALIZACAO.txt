@@ -1,0 +1,8 @@
+ATUALIZAÇÃO: Ranking de Copas + Estatísticas no admin
+
+Esta pasta tem SÓ os arquivos que mudaram (sem imagens, sem dados antigos).
+Copie o conteúdo da pasta "Atualizacao" para dentro da pasta do seu projeto,
+confirmando a substituição dos arquivos. Os caminhos já são os mesmos do projeto.
+
+NÃO substitua dados-publicados/noticias.json nem config.json: eles guardam as
+notícias e a aparência publicadas pelo admin e não fazem parte desta atualização.

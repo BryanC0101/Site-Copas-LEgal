@@ -14,7 +14,7 @@ hamburger.addEventListener("click", () => {
 
 const tabela = document.querySelector("#tabela-artilharia");
 const filtro = document.querySelector("#ordenar");
-const jogadores = [
+let jogadores = [
     {
         foto: "/Estatisticas/imagesProfile/johnnyProfile.png",
         nome: "Johnny Schorros",
@@ -180,11 +180,11 @@ const jogadores = [
 
 
 function mostrarJogadores(lista) {
-    tabela.innerHTML = "";
+    tabela.replaceChildren();
 
-    lista.forEach((jogadores, indice) => {
+    lista.forEach((jogador, indice) => {
         const linha = document.createElement("tr");
-        
+
         let posicao;
 
         if (indice === 0) {
@@ -197,29 +197,38 @@ function mostrarJogadores(lista) {
             posicao = indice + 1;
         }
 
-        linha.innerHTML = `
-        <td>${posicao}</td>
-        <td>
-        <img src="${jogadores.foto}" alt="${jogadores.nome}">
-        ${jogadores.nome}
-        </td>
+        const tdPosicao = document.createElement("td");
+        tdPosicao.textContent = posicao;
 
-        <td>${jogadores.selecao}</td>
+        const tdJogador = document.createElement("td");
+        const foto = document.createElement("img");
+        foto.src = jogador.foto;
+        foto.alt = jogador.nome;
+        tdJogador.append(foto, " " + jogador.nome);
 
-        <td>${jogadores.gols}</td>
+        const tdSelecao = document.createElement("td");
+        tdSelecao.textContent = jogador.selecao;
 
-        <td>${jogadores.assistencias}</td>
-        `;
+        const tdGols = document.createElement("td");
+        tdGols.textContent = jogador.gols;
 
+        const tdAssist = document.createElement("td");
+        tdAssist.textContent = jogador.assistencias;
+
+        linha.append(tdPosicao, tdJogador, tdSelecao, tdGols, tdAssist);
         tabela.appendChild(linha);
     });
 }
 
 
+// Mais gols (ou assistências, conforme o filtro) fica acima.
+// Em empate, desempata pela outra estatística e depois pela ordem da lista.
 function ordenarJogadores(criterio) {
+    const outro = criterio === "gols" ? "assistencias" : "gols";
     const jogadoresOrdenados = [...jogadores];
     jogadoresOrdenados.sort((a, b) => {
-        return b[criterio] - a[criterio];
+        return (Number(b[criterio]) || 0) - (Number(a[criterio]) || 0)
+            || (Number(b[outro]) || 0) - (Number(a[outro]) || 0);
     });
 
     mostrarJogadores(jogadoresOrdenados);
@@ -230,6 +239,22 @@ filtro.addEventListener("change", () => {
 })
 
 ordenarJogadores("gols");
+
+
+// Dados editáveis em /admin → aba "Estatísticas". Se a API falhar, a lista acima continua valendo.
+async function carregarEstatisticas() {
+    try {
+        const resp = await fetch("/api/estatisticas", { cache: "no-store" });
+        if (!resp.ok) return;
+        const dados = await resp.json();
+        if (!Array.isArray(dados.jogadores) || !dados.jogadores.length) return;
+        jogadores = dados.jogadores;
+        ordenarJogadores(filtro.value);   // mantém o filtro escolhido
+    } catch (e) {
+        /* sem API: mantém a lista padrão */
+    }
+}
+carregarEstatisticas();
 
 
 // const tabela = document.querySelector("#tabela-artilharia");

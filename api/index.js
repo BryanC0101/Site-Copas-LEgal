@@ -5,6 +5,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 
+// Regras do Ranking de Copas e das Estatísticas (embutidas aqui para a API não depender de outro arquivo).
+const copas = require('../lib/copas');
+
 const ROOT = process.cwd();
 const PUBLIC = path.join(ROOT, 'public');
 const SEED = path.join(ROOT, 'dados-iniciais');
@@ -19,6 +22,8 @@ const DATA_DIR = 'dados-publicados';
 const CONFIG_PATH = `${DATA_DIR}/config.json`;
 const NEWS_PATH = `${DATA_DIR}/noticias.json`;
 const ADMIN_PATH = `${DATA_DIR}/admin.enc.json`;
+const RANKING_PATH = `${DATA_DIR}/ranking.json`;
+const STATS_PATH = `${DATA_DIR}/estatisticas.json`;
 const CREDENTIALS_KEY = process.env.ADMIN_CREDENTIALS_KEY || '';
 const MAX_IMAGE = 3 * 1024 * 1024; // cabe com folga no limite de payload de funções Vercel
 const DEFAULT_CONFIG = { bandeira: '/images/flags/Flag_of_North_Macedonia.svg.webp', corPrincipal: '#d1b725', corSecundaria: null };
@@ -128,6 +133,8 @@ async function seedJSON(file, fallback) {
 }
 async function getConfig() { return { ...DEFAULT_CONFIG, ...(await seedJSON(CONFIG_PATH,{})) }; }
 async function getNews() { return await seedJSON(NEWS_PATH,[]); }
+async function getRanking() { const d = await seedJSON(RANKING_PATH,{}); return { proximaConquista: Number(d.proximaConquista)||1, selecoes: Array.isArray(d.selecoes)?d.selecoes:[] }; }
+async function getStats() { const d = await seedJSON(STATS_PATH,{}); return { jogadores: Array.isArray(d.jogadores)?d.jogadores:[] }; }
 function summarize(n) { return {id:n.id,titulo:n.titulo,tituloLista:n.tituloLista||'',subtitulo:n.subtitulo||'',resumo:n.resumo||'',categoria:n.categoria||'',imagem:n.imagem,data:n.data,destaque:!!n.destaque}; }
 async function theme(res) { const c=await getConfig(); let css=`:root{--cor-nav:${COLOR.test(c.corPrincipal)?c.corPrincipal:DEFAULT_CONFIG.corPrincipal};`; if(c.corSecundaria&&COLOR.test(c.corSecundaria))css+=`--cor-secundaria:${c.corSecundaria};`; res.statusCode=200;res.setHeader('Content-Type','text/css; charset=utf-8');res.setHeader('Cache-Control','no-store');res.end(css+'}\n'); }
 function detectImage(buf) {
@@ -144,7 +151,7 @@ function slug(s) { return String(s||'imagem').replace(/\.[^.]*$/,'').normalize('
 function localImages() {
   const result=[];
   function walk(dir,url,pasta){let entries=[];try{entries=fs.readdirSync(dir,{withFileTypes:true})}catch{return};for(const ent of entries){if(ent.name.startsWith('.'))continue;const abs=path.join(dir,ent.name);if(ent.isDirectory())walk(abs,`${url}/${ent.name}`,ent.name);else if(EXT.has(path.extname(ent.name).toLowerCase())){let st;try{st=fs.statSync(abs)}catch{continue}result.push({url:`${url}/${ent.name}`,nome:ent.name,pasta,mtime:st.mtimeMs});}}}
-  walk(path.join(PUBLIC,'images'),'/images','images'); walk(path.join(PUBLIC,'noticias'),'/noticias','noticias'); return result;
+  walk(path.join(PUBLIC,'images'),'/images','images'); walk(path.join(PUBLIC,'noticias'),'/noticias','noticias'); walk(path.join(PUBLIC,'Estatisticas','imagesProfile'),'/Estatisticas/imagesProfile','imagesProfile'); return result;
 }
 async function imageList() {
   const list=localImages(); const dir=`${PUBLIC.replace(/\\/g,'/')}/uploads`;
@@ -165,6 +172,8 @@ module.exports = async (req,res) => {
     if (p === '/api/noticias' && method==='GET') { const ns=sortNews((await getNews()).filter(n=>n.publicado!==false)); return response(res,200,ns.map(summarize)); }
     const publicNews=p.match(/^\/api\/noticias\/(\d+)$/);
     if(publicNews&&method==='GET'){const n=(await getNews()).find(x=>x.id===Number(publicNews[1])&&x.publicado!==false);return response(res,n?200:404,n||{erro:'Notícia não encontrada.'});}
+    if(p==='/api/ranking'&&method==='GET'){const d=await getRanking();return response(res,200,{selecoes:copas.comTotal(d.selecoes)});}
+    if(p==='/api/estatisticas'&&method==='GET')return response(res,200,await getStats());
     if(p==='/api/config'&&method==='GET'){const c=await getConfig();return response(res,200,{bandeira:c.bandeira,corPrincipal:c.corPrincipal,corSecundaria:c.corSecundaria});}
     if(!p.startsWith('/api/admin/'))return response(res,404,{erro:'Rota não encontrada.'});
     if(method!=='GET'&&method!=='HEAD')publicOriginCheck(req);
@@ -203,6 +212,16 @@ module.exports = async (req,res) => {
       const b=await parseBody(req);const base64=String(b.dados||'').replace(/^data:[^,]*,/,'');const buf=Buffer.from(base64,'base64');if(!buf.length)fail('Arquivo vazio.');if(buf.length>MAX_IMAGE)fail('Para o upload pela administração, use imagens de até 3 MB.',413);
       const ext=detectImage(buf);if(!ext)fail('Formato não suportado. Use PNG, JPG, GIF, WEBP ou SVG.');const name=`${slug(b.nome)}-${crypto.randomBytes(4).toString('hex')}${ext}`;
       await writeRepoFile(`public/uploads/${name}`,buf,`Admin: enviar imagem ${name}`);return response(res,201,{url:`/uploads/${name}`,nome:name});
+    }
+    if(p==='/api/admin/ranking'&&method==='GET'){const d=await getRanking();return response(res,200,{selecoes:copas.comTotal(d.selecoes)});}
+    if(p==='/api/admin/ranking'&&method==='PUT'){
+      const dados=copas.validarRanking(await parseBody(req),await getRanking());
+      await writeRepoFile(RANKING_PATH,JSON.stringify(dados,null,2)+'\n',`Admin: atualizar ranking de campeões (${new Date().toISOString()})`);return response(res,200,{selecoes:copas.comTotal(dados.selecoes)});
+    }
+    if(p==='/api/admin/estatisticas'&&method==='GET')return response(res,200,await getStats());
+    if(p==='/api/admin/estatisticas'&&method==='PUT'){
+      const dados=copas.validarJogadores(await parseBody(req),await getStats());
+      await writeRepoFile(STATS_PATH,JSON.stringify(dados,null,2)+'\n',`Admin: atualizar estatísticas dos jogadores (${new Date().toISOString()})`);return response(res,200,dados);
     }
     if(p==='/api/admin/senha'&&method==='POST'){
       const b=await parseBody(req); const current=await getCredentials();

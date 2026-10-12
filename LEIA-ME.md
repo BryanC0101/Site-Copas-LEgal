@@ -15,6 +15,10 @@ Não precisa instalar nada além do Node (nenhum `npm install`).
 - **Publicações:** criar, editar, excluir; salvar como *rascunho*; marcar para aparecer no **carrossel da home**
   (máximo 5, as mais recentes); imagem principal e imagem do rodapé enviadas direto do seu computador.
 - **Aparência:** cor principal e cor secundária (valem para **todas** as páginas de uma vez) e a **bandeira da “Campeã mundial”**.
+- **Ranking de Copas:** botões **+ / −** para somar copas de cada seleção, adicionar ou remover seleções e trocar bandeiras.
+  Ao salvar, o ranking do site se reorganiza sozinho (mais copas = mais acima; em empate, quem chegou primeiro fica na frente).
+- **Estatísticas:** editar gols, assistências, nome, seleção e foto de cada jogador, adicionar ou remover jogadores. A página
+  pública continua com o filtro Gols/Assistências e ordena automaticamente pelo critério escolhido.
 - **Conta:** trocar senha.
 
 ## Executar localmente ou publicar no Vercel
@@ -35,6 +39,7 @@ configuração aparece no terminal.
 ## Estrutura
 ```
 dev-server.js       servidor (site + API + admin)
+lib/copas.js         regras do ranking de copas e das estatísticas (usado pelo servidor local e pela API do Vercel)
 public/              o site (mesmas URLs de antes: /images, /noticias, /Ranking…)
 public/admin/        painel de administração
 dados-iniciais/      notícias e configurações originais (copiadas para data/ no primeiro início)

@@ -11,6 +11,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const copas = require('./lib/copas.js');
 
 // ───────────────────────── Configuração ─────────────────────────
 const ROOT = __dirname;
@@ -22,6 +23,8 @@ const BACKUPS = path.join(DATA, 'backups');
 const F_NOTICIAS = path.join(DATA, 'noticias.json');
 const F_CONFIG = path.join(DATA, 'config.json');
 const F_ADMIN = path.join(DATA, 'admin.json');
+const F_RANKING = path.join(DATA, 'ranking.json');
+const F_STATS = path.join(DATA, 'estatisticas.json');
 
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || (process.env.PORT ? '0.0.0.0' : '127.0.0.1');
@@ -33,7 +36,7 @@ const BANDEIRA_PADRAO = '/images/flags/Flag_of_North_Macedonia.svg.webp';
 const CONFIG_PADRAO = { bandeira: BANDEIRA_PADRAO, corPrincipal: '#d1b725', corSecundaria: null };
 
 for (const d of [DATA, UPLOADS, BACKUPS]) fs.mkdirSync(d, { recursive: true });
-for (const f of ['noticias.json', 'config.json']) {
+for (const f of ['noticias.json', 'config.json', 'ranking.json', 'estatisticas.json']) {
   const dest = path.join(DATA, f);
   if (!fs.existsSync(dest) && fs.existsSync(path.join(SEED, f))) fs.copyFileSync(path.join(SEED, f), dest);
 }
@@ -66,6 +69,8 @@ function backupNoticias() {
 const getNoticias = () => lerJSON(F_NOTICIAS, []);
 function salvarNoticias(lista) { backupNoticias(); gravarJSON(F_NOTICIAS, lista); }
 function getConfig() { return { ...CONFIG_PADRAO, ...lerJSON(F_CONFIG, {}) }; }
+function getRanking() { const d = lerJSON(F_RANKING, {}); return { proximaConquista: Number(d.proximaConquista) || 1, selecoes: Array.isArray(d.selecoes) ? d.selecoes : [] }; }
+function getStats() { const d = lerJSON(F_STATS, {}); return { jogadores: Array.isArray(d.jogadores) ? d.jogadores : [] }; }
 
 const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 function dataExtenso(iso) {
@@ -315,6 +320,7 @@ function listarImagens() {
   };
   varrer(path.join(PUBLIC, 'images'), '/images', 'images');
   varrer(path.join(PUBLIC, 'noticias'), '/noticias', 'noticias');
+  varrer(path.join(PUBLIC, 'Estatisticas', 'imagesProfile'), '/Estatisticas/imagesProfile', 'imagesProfile');
   varrer(UPLOADS, '/uploads', 'uploads');
   return out;
 }
@@ -340,6 +346,8 @@ async function rotaPublica(req, res, url) {
     const n = getNoticias().find(x => x.id === Number(m[1]) && x.publicado !== false);
     return n ? json(res, 200, n) : json(res, 404, { erro: 'Notícia não encontrada.' }), true;
   }
+  if (p === '/api/ranking') return json(res, 200, { selecoes: copas.comTotal(getRanking().selecoes) }), true;
+  if (p === '/api/estatisticas') return json(res, 200, getStats()), true;
   if (p === '/api/config') {
     const c = getConfig();
     return json(res, 200, { bandeira: c.bandeira, corPrincipal: c.corPrincipal, corSecundaria: c.corSecundaria }), true;
@@ -481,6 +489,19 @@ async function rotaAdmin(req, res, url) {
     }
     gravarJSON(F_CONFIG, atual);
     return json(res, 200, atual), true;
+  }
+
+  if (p === '/api/admin/ranking' && metodo === 'GET') return json(res, 200, { selecoes: copas.comTotal(getRanking().selecoes) }), true;
+  if (p === '/api/admin/ranking' && metodo === 'PUT') {
+    const dados = copas.validarRanking(await lerJSONCorpo(req), getRanking());
+    gravarJSON(F_RANKING, dados);
+    return json(res, 200, { selecoes: copas.comTotal(dados.selecoes) }), true;
+  }
+  if (p === '/api/admin/estatisticas' && metodo === 'GET') return json(res, 200, getStats()), true;
+  if (p === '/api/admin/estatisticas' && metodo === 'PUT') {
+    const dados = copas.validarJogadores(await lerJSONCorpo(req), getStats());
+    gravarJSON(F_STATS, dados);
+    return json(res, 200, dados), true;
   }
 
   if (p === '/api/admin/senha' && metodo === 'POST') {

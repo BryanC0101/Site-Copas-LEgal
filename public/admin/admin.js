@@ -5,6 +5,14 @@ const COR_PADRAO = '#d1b725';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+// Se algo der errado antes do painel abrir, mostra o motivo na tela (em vez de ficar só "Carregando…")
+function mostrarFalha(msg) {
+    const c = document.querySelector('#carregando');
+    if (c && !c.hidden) c.textContent = 'Erro ao carregar a administração: ' + msg + ' (abra o console com F12 para mais detalhes)';
+}
+window.addEventListener('error', ev => mostrarFalha(ev.message));
+window.addEventListener('unhandledrejection', ev => mostrarFalha((ev.reason && ev.reason.message) || String(ev.reason)));
+
 let csrf = null;
 let posts = [];
 let editandoId = null;
@@ -19,7 +27,12 @@ async function api(metodo, url, corpo) {
     }
     if (csrf && metodo !== 'GET') opcoes.headers['X-CSRF-Token'] = csrf;
     let resp;
-    try { resp = await fetch(url, opcoes); } catch { throw new Error('Sem conexão com o servidor.'); }
+    const ctl = new AbortController();
+    const limite = setTimeout(() => ctl.abort(), 25000);
+    opcoes.signal = ctl.signal;
+    try { resp = await fetch(url, opcoes); }
+    catch (e) { throw new Error(e && e.name === 'AbortError' ? 'O servidor demorou demais para responder.' : 'Sem conexão com o servidor.'); }
+    finally { clearTimeout(limite); }
     let dados = {};
     try { dados = await resp.json(); } catch { /* sem corpo */ }
     if (resp.status === 401 && url !== '/api/admin/login') {
@@ -105,12 +118,15 @@ $('#btn-sair').addEventListener('click', async () => {
 async function abrirPainel() {
     mostrar('tela-painel');
     await Promise.all([carregarPosts(), carregarConfig()]);
+    // As abas novas não podem impedir o painel de abrir, mesmo que a API falhe
+    carregarRanking();
+    carregarJogadores();
     irParaAba('posts');
 }
 
 /* ───────────── abas ───────────── */
 function irParaAba(nome) {
-    for (const a of ['posts', 'editor', 'aparencia', 'conta']) $('#aba-' + a).hidden = a !== nome;
+    for (const a of ['posts', 'editor', 'ranking', 'estatisticas', 'aparencia', 'conta']) $('#aba-' + a).hidden = a !== nome;
     $$('#abas button').forEach(b => b.classList.toggle('ativa', b.dataset.aba === nome));
     window.scrollTo(0, 0);
 }
@@ -210,12 +226,18 @@ function editarPublicacao(id) {
     preencherEditor(p);
     irParaAba('editor');
 }
-$('#btn-cancelar-post').addEventListener('click', () => irParaAba('posts'));
+const btnCancelarPost = $('#btn-cancelar-post');
+if (btnCancelarPost) btnCancelarPost.addEventListener('click', () => irParaAba('posts'));
 
 $$('.campo-imagem').forEach(box => {
-    $('[data-escolher]', box).addEventListener('click', () => escolherImagem(url => definirImagem(box.dataset.campo, url)));
+    const escolher = $('[data-escolher]', box);
+    if (escolher && box.dataset.campo) {
+        escolher.addEventListener('click', () => escolherImagem(url => definirImagem(box.dataset.campo, url)));
+    }
     const rem = $('[data-remover]', box);
-    if (rem) rem.addEventListener('click', () => definirImagem(box.dataset.campo, ''));
+    if (rem && box.dataset.campo) {
+        rem.addEventListener('click', () => definirImagem(box.dataset.campo, ''));
+    }
 });
 
 aoEnviar(formPost, async f => {
@@ -363,6 +385,211 @@ aoEnviar($('#form-aparencia'), async f => {
         bandeira: bandeiraAtual,
     });
     setOk(f, 'Aparência salva! Todas as páginas já usam as novas configurações.');
+});
+
+/* ───────────── ranking de copas ───────────── */
+let ranking = [];            // cópia de trabalho (só vai pro site ao clicar em Salvar)
+let rankingSujo = false;
+let idTemp = -1;             // ids negativos = seleção nova (o servidor cria o id real)
+let novaBandeira = '';
+
+function intOuNaN(v) { return v === '' ? NaN : Number(v); }
+function marcarRanking(sujo) {
+    rankingSujo = sujo;
+    $('#btn-salvar-ranking').textContent = sujo ? 'Salvar ranking (alterações pendentes)' : 'Salvar ranking';
+}
+async function carregarRanking() {
+    try {
+        const r = await api('GET', '/api/admin/ranking');
+        ranking = r.selecoes.map(s => ({ id: s.id, nome: s.nome, bandeira: s.bandeira, julesRimet: s.julesRimet || 0, copas: s.copas || 0 }));
+        marcarRanking(false);
+        desenharRanking();
+    } catch (e) { $('#erro-ranking').textContent = e.message; }
+}
+function desenharRanking() {
+    const lista = $('#lista-ranking');
+    lista.replaceChildren();
+    if (!ranking.length) lista.append(el('p', { class: 'ajuda', text: 'Nenhuma seleção cadastrada.' }));
+    ranking.forEach((s, i) => lista.append(linhaSelecao(s, i)));
+}
+function linhaSelecao(s, i) {
+    const totalEl = el('span', { class: 'total-copas' });
+    const linha = el('div', { class: 'sel-item' });
+    const atualizar = () => {
+        const t = (Number.isFinite(s.copas) ? s.copas : 0) + (Number.isFinite(s.julesRimet) ? s.julesRimet : 0);
+        totalEl.replaceChildren('Total: ', el('strong', { text: String(t) }));
+        linha.classList.toggle('sem-copas', t === 0);
+    };
+    const mexeu = () => { marcarRanking(true); linha.classList.add('alterado'); atualizar(); };
+
+    const bandeiraImg = el('img', { src: s.bandeira, alt: '' });
+    const bandeiraBtn = el('button', {
+        type: 'button', class: 'bandeira-btn', title: 'Trocar bandeira',
+        onclick: () => escolherImagem(url => { s.bandeira = url; bandeiraImg.src = url; mexeu(); }, 'flags'),
+    }, bandeiraImg);
+
+    const nome = el('input', { value: s.nome, maxlength: '60', 'aria-label': 'Nome da seleção' });
+    nome.addEventListener('input', () => { s.nome = nome.value; mexeu(); });
+
+    const copas = el('input', { type: 'number', min: '0', max: '99', value: String(s.copas), 'aria-label': `Copas de ${s.nome}` });
+    const mudar = delta => { const v = (Number.isFinite(s.copas) ? s.copas : 0) + delta; s.copas = Math.min(99, Math.max(0, v)); copas.value = s.copas; mexeu(); };
+    copas.addEventListener('input', () => { s.copas = intOuNaN(copas.value); mexeu(); });
+    const contador = el('div', {},
+        el('span', { class: 'mini-rotulo', text: 'Copas do Mundo' }),
+        el('div', { class: 'contador' },
+            el('button', { type: 'button', class: 'secundario', text: '−', title: 'Tirar uma copa', onclick: () => mudar(-1) }),
+            copas,
+            el('button', { type: 'button', class: 'primario', text: '+', title: 'Adicionar uma copa', onclick: () => mudar(1) })));
+
+    const jules = el('input', { type: 'number', min: '0', max: '99', value: String(s.julesRimet), 'aria-label': 'Taças Jules Rimet' });
+    jules.addEventListener('input', () => { s.julesRimet = intOuNaN(jules.value); mexeu(); });
+    const julesCampo = el('div', {}, el('span', { class: 'mini-rotulo', text: 'Taça Jules Rimet' }), jules);
+
+    const remover = el('button', {
+        type: 'button', class: 'perigo', text: 'Remover',
+        onclick: () => {
+            if (!confirm(`Remover "${s.nome}" do ranking?`)) return;
+            ranking = ranking.filter(x => x !== s);
+            marcarRanking(true);
+            desenharRanking();
+        },
+    });
+
+    linha.append(el('span', { class: 'pos', text: String(i + 1) }), bandeiraBtn, nome, contador, julesCampo, totalEl, remover);
+    atualizar();
+    return linha;
+}
+$('#btn-nova-bandeira').addEventListener('click', () => escolherImagem(url => {
+    novaBandeira = url;
+    const img = $('#nova-bandeira'); img.src = url; img.hidden = false;
+}, 'flags'));
+aoEnviar($('#form-nova-selecao'), async f => {
+    const nome = f.nome.value.trim();
+    if (!nome) throw new Error('Informe o nome da seleção.');
+    if (!novaBandeira) throw new Error('Escolha a bandeira da seleção.');
+    if (ranking.some(s => s.nome.trim().toLowerCase() === nome.toLowerCase())) throw new Error('Essa seleção já está no ranking.');
+    const copas = intOuNaN(f.copas.value);
+    if (!Number.isInteger(copas) || copas < 0 || copas > 99) throw new Error('Copas: use um número entre 0 e 99.');
+    ranking.push({ id: idTemp--, nome, bandeira: novaBandeira, julesRimet: 0, copas });
+    f.reset(); f.copas.value = 0;
+    novaBandeira = ''; $('#nova-bandeira').hidden = true;
+    marcarRanking(true);
+    desenharRanking();
+    avisar('Seleção adicionada à lista. Clique em “Salvar ranking” para publicar.');
+});
+$('#btn-salvar-ranking').addEventListener('click', async ev => {
+    $('#erro-ranking').textContent = ''; $('#ok-ranking').textContent = '';
+    try {
+        await comEnvio(ev.currentTarget, async () => {
+            for (const s of ranking) {
+                if (!s.nome.trim()) throw new Error('Toda seleção precisa de um nome.');
+                for (const v of [s.copas, s.julesRimet]) {
+                    if (!Number.isInteger(v) || v < 0 || v > 99) throw new Error(`Confira os números de ${s.nome} (use inteiros de 0 a 99).`);
+                }
+            }
+            const r = await api('PUT', '/api/admin/ranking', { selecoes: ranking });
+            ranking = r.selecoes.map(s => ({ id: s.id, nome: s.nome, bandeira: s.bandeira, julesRimet: s.julesRimet || 0, copas: s.copas || 0 }));
+            marcarRanking(false);
+            desenharRanking();
+            $('#ok-ranking').textContent = 'Ranking salvo! A página Ranking do site já usa a nova classificação.';
+        });
+    } catch (e) { $('#erro-ranking').textContent = e.message; }
+});
+
+/* ───────────── estatísticas dos jogadores ───────────── */
+const FOTO_PADRAO = '/Estatisticas/imagesProfile/outro.jpg';
+let jogadores = [];
+let jogadoresSujo = false;
+let idTempJog = -1;
+
+function marcarJogadores(sujo) {
+    jogadoresSujo = sujo;
+    $('#btn-salvar-stats').textContent = sujo ? 'Salvar estatísticas (alterações pendentes)' : 'Salvar estatísticas';
+}
+async function carregarJogadores() {
+    try {
+        const r = await api('GET', '/api/admin/estatisticas');
+        jogadores = r.jogadores.map(j => ({ ...j }));
+        marcarJogadores(false);
+        desenharJogadores();
+    } catch (e) { $('#erro-stats').textContent = e.message; }
+}
+function desenharJogadores() {
+    const lista = $('#lista-jogadores');
+    lista.replaceChildren();
+    if (!jogadores.length) lista.append(el('p', { class: 'ajuda', text: 'Nenhum jogador cadastrado.' }));
+    jogadores.forEach(j => lista.append(linhaJogador(j)));
+    filtrarJogadores();
+}
+function linhaJogador(j) {
+    const linha = el('div', { class: 'jog-item' });
+    linha._j = j;
+    const mexeu = () => { marcarJogadores(true); linha.classList.add('alterado'); };
+    const campo = (rotulo, input) => el('label', {}, el('span', { class: 'mini-rotulo', text: rotulo }), input);
+
+    const fotoImg = el('img', { src: j.foto || FOTO_PADRAO, alt: '' });
+    const fotoBtn = el('button', {
+        type: 'button', class: 'foto-btn', title: 'Trocar foto',
+        onclick: () => escolherImagem(url => { j.foto = url; fotoImg.src = url; mexeu(); }),
+    }, fotoImg);
+
+    const nome = el('input', { value: j.nome, maxlength: '80' });
+    nome.addEventListener('input', () => { j.nome = nome.value; mexeu(); });
+    const selecao = el('input', { value: j.selecao || '', maxlength: '200' });
+    selecao.addEventListener('input', () => { j.selecao = selecao.value; mexeu(); });
+    const gols = el('input', { type: 'number', min: '0', max: '9999', value: String(j.gols) });
+    gols.addEventListener('input', () => { j.gols = intOuNaN(gols.value); mexeu(); });
+    const assist = el('input', { type: 'number', min: '0', max: '9999', value: String(j.assistencias) });
+    assist.addEventListener('input', () => { j.assistencias = intOuNaN(assist.value); mexeu(); });
+
+    const remover = el('button', {
+        type: 'button', class: 'perigo remover', text: 'Remover',
+        onclick: () => {
+            if (!confirm(`Remover "${j.nome || 'este jogador'}" das estatísticas?`)) return;
+            jogadores = jogadores.filter(x => x !== j);
+            marcarJogadores(true);
+            desenharJogadores();
+        },
+    });
+    linha.append(fotoBtn, campo('Jogador', nome), campo('Seleção(ões)', selecao), campo('Gols', gols), campo('Assistências', assist), remover);
+    return linha;
+}
+function filtrarJogadores() {
+    const f = $('#busca-jogadores').value.trim().toLowerCase();
+    $$('#lista-jogadores .jog-item').forEach(l => {
+        l.hidden = !!f && !`${l._j.nome} ${l._j.selecao}`.toLowerCase().includes(f);
+    });
+}
+$('#busca-jogadores').addEventListener('input', filtrarJogadores);
+$('#btn-novo-jogador').addEventListener('click', () => {
+    $('#busca-jogadores').value = '';
+    jogadores.unshift({ id: idTempJog--, nome: '', foto: FOTO_PADRAO, selecao: '', gols: 0, assistencias: 0 });
+    marcarJogadores(true);
+    desenharJogadores();
+    const primeira = $('#lista-jogadores .jog-item input');
+    if (primeira) primeira.focus();
+});
+$('#btn-salvar-stats').addEventListener('click', async ev => {
+    $('#erro-stats').textContent = ''; $('#ok-stats').textContent = '';
+    try {
+        await comEnvio(ev.currentTarget, async () => {
+            for (const j of jogadores) {
+                if (!j.nome.trim()) throw new Error('Todo jogador precisa de um nome.');
+                for (const v of [j.gols, j.assistencias]) {
+                    if (!Number.isInteger(v) || v < 0 || v > 9999) throw new Error(`Confira os números de ${j.nome} (inteiros de 0 a 9999).`);
+                }
+            }
+            const r = await api('PUT', '/api/admin/estatisticas', { jogadores });
+            jogadores = r.jogadores.map(j => ({ ...j }));
+            marcarJogadores(false);
+            desenharJogadores();
+            $('#ok-stats').textContent = 'Estatísticas salvas! A página Estatísticas do site já usa os novos números.';
+        });
+    } catch (e) { $('#erro-stats').textContent = e.message; }
+});
+
+window.addEventListener('beforeunload', ev => {
+    if (rankingSujo || jogadoresSujo) { ev.preventDefault(); ev.returnValue = ''; }
 });
 
 /* ───────────── conta ───────────── */

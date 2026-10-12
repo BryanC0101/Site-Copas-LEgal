@@ -98,3 +98,39 @@ button:disabled { opacity: .6; cursor: default; }
     .item img { width: 100%; height: 140px; }
     .barra-titulo input { max-width: none; width: 100%; order: 3; }
 }
+
+/* ── Ranking de Copas e Estatísticas ── */
+.campo-bandeira { display: flex; flex-direction: column; gap: 8px; }
+.linha-nova { margin: 12px 0; }
+.linha-nova h3 { margin: 0; }
+.nova-grade { display: grid; grid-template-columns: 2fr 1.4fr 90px auto; gap: 14px; align-items: end; }
+.bandeira-mini { width: 54px; height: 38px; object-fit: contain; border: 1px solid var(--borda); border-radius: 6px; background: #fff; padding: 2px; }
+
+.sel-item { background: #fff; border: 1px solid var(--borda); border-radius: 10px; padding: 10px 12px; display: grid; grid-template-columns: 38px 64px minmax(120px, 1.6fr) auto auto auto auto; gap: 12px; align-items: center; }
+.sel-item.sem-copas { opacity: .65; }
+.sel-item .pos { font-weight: 700; color: var(--suave); text-align: center; font-size: 15px; }
+.sel-item .bandeira-btn { padding: 0; border: 1px solid var(--borda); background: #fff; border-radius: 6px; height: 44px; width: 64px; overflow: hidden; }
+.sel-item .bandeira-btn img { width: 100%; height: 100%; object-fit: contain; }
+.contador { display: flex; align-items: center; gap: 6px; }
+.contador button { padding: 6px 12px; font-size: 18px; line-height: 1; }
+.contador input { width: 64px; text-align: center; padding: 8px 6px; }
+.mini-rotulo { font-size: 12px; color: var(--suave); display: block; margin-bottom: 3px; font-weight: 600; }
+.total-copas { font-size: 13px; color: var(--suave); white-space: nowrap; }
+.total-copas strong { color: var(--texto); font-size: 16px; }
+
+.jog-item { background: #fff; border: 1px solid var(--borda); border-radius: 10px; padding: 8px 12px; display: grid; grid-template-columns: 56px minmax(120px, 1.3fr) minmax(120px, 1.6fr) 84px 84px auto; gap: 12px; align-items: end; }
+.jog-item .foto-btn { padding: 0; border: 1px solid var(--borda); background: #fff; border-radius: 50%; width: 52px; height: 52px; overflow: hidden; align-self: center; }
+.jog-item .foto-btn img { width: 100%; height: 100%; object-fit: cover; }
+.jog-item input[type="number"] { text-align: center; }
+.jog-item .remover { align-self: center; padding: 7px 12px; font-size: 14px; }
+.alterado { border-color: #6d97f5; box-shadow: 0 0 0 2px #e3ebff; }
+
+@media (max-width: 760px) {
+    .nova-grade { grid-template-columns: 1fr 1fr; }
+    .sel-item { grid-template-columns: 30px 56px 1fr; }
+    .sel-item > :nth-child(n+4) { grid-column: 1 / -1; }
+    .jog-item { grid-template-columns: 52px 1fr 1fr; }
+    .jog-item > :nth-child(2), .jog-item > :nth-child(3) { grid-column: span 1; }
+    .jog-item > :nth-child(n+4) { grid-column: span 1; }
+}
+
