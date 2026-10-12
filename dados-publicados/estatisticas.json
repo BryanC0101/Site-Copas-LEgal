@@ -2,184 +2,184 @@
   "jogadores": [
     {
       "id": 1,
-      "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
       "nome": "Johnny Schorros",
+      "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
       "selecao": "Macedônia do Norte, Moldávia, Somália, Timor-leste, Brunei, Gibraltar",
-      "gols": 152,
-      "assistencias": 34
+      "gols": 174,
+      "assistencias": 36
     },
     {
       "id": 2,
-      "foto": "/Estatisticas/imagesProfile/claudioProfile.png",
       "nome": "Cláudio Goodbarras",
+      "foto": "/Estatisticas/imagesProfile/claudioProfile.png",
       "selecao": "Cazaquistão, Panamá, Vietnã, San Marino, Gibraltar, Laos",
-      "gols": 99,
-      "assistencias": 43
+      "gols": 103,
+      "assistencias": 50
     },
     {
       "id": 3,
-      "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
       "nome": "Johnny Schorros",
+      "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
       "selecao": "Cazaquistão, Panamá, Vietnã, San Marino, Gibraltar, Laos",
-      "gols": 89,
-      "assistencias": 61
+      "gols": 106,
+      "assistencias": 63
     },
     {
       "id": 4,
-      "foto": "/Estatisticas/imagesProfile/chowProfile.png",
       "nome": "Hans Chow",
+      "foto": "/Estatisticas/imagesProfile/chowProfile.png",
       "selecao": "Somália, Timor-leste, Brunei",
       "gols": 22,
       "assistencias": 33
     },
     {
       "id": 5,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Everto Camargo",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Macedônia do Norte, Moldávia, Brunei, Gibraltar",
-      "gols": 60,
-      "assistencias": 31
+      "gols": 70,
+      "assistencias": 39
     },
     {
       "id": 6,
-      "foto": "/Estatisticas/imagesProfile/clausioProfile.png",
       "nome": "Cláusio Goodbarras",
+      "foto": "/Estatisticas/imagesProfile/clausioProfile.png",
       "selecao": "San Marino",
       "gols": 57,
       "assistencias": 14
     },
     {
       "id": 7,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Claudio Osorio",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Timor-Leste",
       "gols": 2,
       "assistencias": 11
     },
     {
       "id": 8,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Matteo Vitaioli",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 3,
       "assistencias": 26
     },
     {
       "id": 9,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Freteliano",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Timor-Leste",
       "gols": 0,
       "assistencias": 5
     },
     {
       "id": 10,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Marcello Mularoni",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 2,
       "assistencias": 2
     },
     {
       "id": 11,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Azwan Ali Rahman",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Brunei",
       "gols": 0,
       "assistencias": 1
     },
     {
       "id": 12,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Faiq Bolkiah",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Brunei",
       "gols": 0,
       "assistencias": 1
     },
     {
       "id": 13,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Chony Wenpaserth",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Laos",
       "gols": 0,
       "assistencias": 5
     },
     {
       "id": 14,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Anousone Xaypanya",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Laos",
       "gols": 0,
       "assistencias": 4
     },
     {
       "id": 15,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Mukhtar Suleiman",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Somália",
       "gols": 0,
       "assistencias": 4
     },
     {
       "id": 16,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Zakariyah Nur",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Somália",
       "gols": 0,
       "assistencias": 3
     },
     {
       "id": 17,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Enrico Golinucci",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 0,
       "assistencias": 2
     },
     {
       "id": 18,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Luca Ceccaroli",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 0,
       "assistencias": 2
     },
     {
       "id": 19,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "John Frith",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Timor-Leste",
       "gols": 0,
       "assistencias": 2
     },
     {
       "id": 20,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Kian Ronan",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Gibraltar",
       "gols": 2,
       "assistencias": 3
     },
     {
       "id": 21,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "James Scanlon",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "Gibraltar",
       "gols": 0,
       "assistencias": 5
     },
     {
       "id": 22,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Andrea Grandoni",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 0,
       "assistencias": 1
     },
     {
       "id": 23,
-      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "nome": "Alessando Golinucci",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
       "selecao": "San Marino",
       "gols": 0,
       "assistencias": 1
