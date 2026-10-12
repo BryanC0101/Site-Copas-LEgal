@@ -226,13 +226,18 @@ function editarPublicacao(id) {
     preencherEditor(p);
     irParaAba('editor');
 }
-$('#btn-cancelar-post').addEventListener('click', () => irParaAba('posts'));
+const btnCancelarPost = $('#btn-cancelar-post');
+if (btnCancelarPost) btnCancelarPost.addEventListener('click', () => irParaAba('posts'));
 
 $$('.campo-imagem').forEach(box => {
     const escolher = $('[data-escolher]', box);
-    if (escolher) escolher.addEventListener('click', () => escolherImagem(url => definirImagem(box.dataset.campo, url)));
+    if (escolher && box.dataset.campo) {
+        escolher.addEventListener('click', () => escolherImagem(url => definirImagem(box.dataset.campo, url)));
+    }
     const rem = $('[data-remover]', box);
-    if (rem) rem.addEventListener('click', () => definirImagem(box.dataset.campo, ''));
+    if (rem && box.dataset.campo) {
+        rem.addEventListener('click', () => definirImagem(box.dataset.campo, ''));
+    }
 });
 
 aoEnviar(formPost, async f => {
