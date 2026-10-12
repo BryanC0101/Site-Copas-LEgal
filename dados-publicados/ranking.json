@@ -1,5 +1,5 @@
 {
-  "proximaConquista": 1,
+  "proximaConquista": 2,
   "selecoes": [
     {
       "id": 1,
@@ -30,8 +30,8 @@
       "nome": "San Marino",
       "bandeira": "/images/flags/sanmarino.svg",
       "julesRimet": 0,
-      "copas": 4,
-      "ultimaConquista": 0
+      "copas": 20,
+      "ultimaConquista": 1
     },
     {
       "id": 5,
