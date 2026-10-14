@@ -2,14 +2,6 @@
   "proximaConquista": 2,
   "selecoes": [
     {
-      "id": 4,
-      "nome": "San Marino",
-      "bandeira": "/images/flags/sanmarino.svg",
-      "julesRimet": 0,
-      "copas": 4,
-      "ultimaConquista": 1
-    },
-    {
       "id": 1,
       "nome": "Brasil",
       "bandeira": "/images/flags/brasil.webp",
@@ -40,6 +32,14 @@
       "julesRimet": 1,
       "copas": 3,
       "ultimaConquista": 0
+    },
+    {
+      "id": 4,
+      "nome": "San Marino",
+      "bandeira": "/images/flags/sanmarino.svg",
+      "julesRimet": 0,
+      "copas": 4,
+      "ultimaConquista": 1
     },
     {
       "id": 6,
