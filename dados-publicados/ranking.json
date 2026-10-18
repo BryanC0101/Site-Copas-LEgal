@@ -1,5 +1,5 @@
 {
-  "proximaConquista": 3,
+  "proximaConquista": 4,
   "selecoes": [
     {
       "id": 2,
@@ -120,6 +120,14 @@
       "julesRimet": 1,
       "copas": 0,
       "ultimaConquista": 0
+    },
+    {
+      "id": 16,
+      "nome": "Jamaica",
+      "bandeira": "/uploads/flag-of-jamaica-svg-83454e1c.webp",
+      "julesRimet": 0,
+      "copas": 1,
+      "ultimaConquista": 3
     }
   ]
 }
