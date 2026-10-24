@@ -1,13 +1,13 @@
 {
-  "proximaConquista": 4,
+  "proximaConquista": 5,
   "selecoes": [
     {
       "id": 2,
       "nome": "Macedônia do Norte",
       "bandeira": "/images/flags/Flag_of_North_Macedonia.svg.webp",
       "julesRimet": 0,
-      "copas": 6,
-      "ultimaConquista": 2
+      "copas": 7,
+      "ultimaConquista": 4
     },
     {
       "id": 1,
