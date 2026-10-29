@@ -734,5 +734,29 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 31,
+    "titulo": "Heptacampeã, Macedônia do Norte!",
+    "tituloLista": "",
+    "data": "29 out 2026",
+    "dataISO": "2026-10-29",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/uploads/imagem-centralizada-2-026ebe18.jpg",
+    "resumo": "",
+    "subtitulo": "Johhny Schorros mais uma vez carrega o time para a vitória",
+    "paragrafos": [
+      "Mais uma vez Johnny Schorros chega à final com a Macedônia do Norte nas costas, pobre schorros!",
+      "É impressionante como Johnny não perde qualidade em nenhuma edição. Nós vimos outras grandes figuras (algumas nem tanto) passando por aqui, como Cláudio, Cláusio, Hans Chow, Everto Camargo e até Johnny do Cazaquistão, e todos eles em diversos momentos demonstraram quedas constantes de qualidade em diversas edições, mas Johnny da Macedônia, neste universo, não aparentou perder sua força em momento algum.",
+      "Vejamos o exemplo do técnico Andrey Malakovitch Djangovsky, que teve extremas dificuldades com Cláusio pós era de ouro de San Marino, teve problemas com Cláudio Goodbarras em diversas seleções por sua falta de comprometimento com seus trabalhos e também passou momentos terríveis com Hans Chow, embora este último ainda o beneficiou com uma copa ganha.",
+      "Nesta edição com a Jamaica, Andrey enfrentou uma situação infeliz com uma lesão de Cláudio Goodbarras, que decretou sua derrota já na fase de grupos, acontecimento nunca antes visto em sua carreira neste universo. É um momento extremamente delicado na carreira de Andrey, ainda mais quando notamos que o fim do univero se aproxima.",
+      "Quanto a Fedo, este se regozija de sua 11º copa do mundo e, de modo arbitrário, se coloca como o maior técnico de todas as edições.",
+      "Alguns podem concordar, especialmente schorristas fanáticos, mas entrando no âmbito racional, ainda há muito a se discutir a respeito desta estranha afirmação do técnico italiano, que vê apenas um número como fator determinante para enaltecer superioridade profissional.",
+      "Portanto, o resultado desta edição marca uma distancia de 1 copa do mundo entre Andrey e Fedo."
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": false,
+    "publicado": true
   }
 ]
