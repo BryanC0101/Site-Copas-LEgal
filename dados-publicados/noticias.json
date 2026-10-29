@@ -756,7 +756,7 @@
     ],
     "imagemInfo": "",
     "legenda": "",
-    "destaque": false,
+    "destaque": true,
     "publicado": true
   }
 ]
