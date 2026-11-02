@@ -1,14 +1,6 @@
 {
-  "proximaConquista": 6,
+  "proximaConquista": 7,
   "selecoes": [
-    {
-      "id": 2,
-      "nome": "Macedônia do Norte",
-      "bandeira": "/images/flags/Flag_of_North_Macedonia.svg.webp",
-      "julesRimet": 0,
-      "copas": 7,
-      "ultimaConquista": 4
-    },
     {
       "id": 1,
       "nome": "Brasil",
@@ -34,30 +26,6 @@
       "ultimaConquista": 0
     },
     {
-      "id": 4,
-      "nome": "San Marino",
-      "bandeira": "/images/flags/sanmarino.svg",
-      "julesRimet": 0,
-      "copas": 4,
-      "ultimaConquista": 1
-    },
-    {
-      "id": 6,
-      "nome": "Moldávia",
-      "bandeira": "/images/flags/moldavia.svg",
-      "julesRimet": 0,
-      "copas": 3,
-      "ultimaConquista": 0
-    },
-    {
-      "id": 7,
-      "nome": "Cazaquistão",
-      "bandeira": "/images/flags/Flag_of_Kazakhstan.svg",
-      "julesRimet": 0,
-      "copas": 3,
-      "ultimaConquista": 0
-    },
-    {
       "id": 8,
       "nome": "Argentina",
       "bandeira": "/images/flags/argentina.webp",
@@ -70,16 +38,8 @@
       "nome": "Espanha",
       "bandeira": "/images/flags/espanha.svg",
       "julesRimet": 0,
-      "copas": 2,
-      "ultimaConquista": 0
-    },
-    {
-      "id": 10,
-      "nome": "Vietnã",
-      "bandeira": "/images/flags/Flag-Vietnam.webp",
-      "julesRimet": 0,
-      "copas": 2,
-      "ultimaConquista": 0
+      "copas": 4,
+      "ultimaConquista": 6
     },
     {
       "id": 11,
@@ -98,36 +58,12 @@
       "ultimaConquista": 0
     },
     {
-      "id": 13,
-      "nome": "Somália",
-      "bandeira": "/images/flags/somalia.svg",
-      "julesRimet": 0,
-      "copas": 1,
-      "ultimaConquista": 0
-    },
-    {
-      "id": 14,
-      "nome": "Timor-Leste",
-      "bandeira": "/images/flags/timorleste.svg",
-      "julesRimet": 0,
-      "copas": 1,
-      "ultimaConquista": 0
-    },
-    {
       "id": 15,
       "nome": "Inglaterra",
       "bandeira": "/images/flags/inglaterra.webp",
       "julesRimet": 1,
-      "copas": 1,
+      "copas": 0,
       "ultimaConquista": 5
-    },
-    {
-      "id": 16,
-      "nome": "Jamaica",
-      "bandeira": "/uploads/flag-of-jamaica-svg-83454e1c.webp",
-      "julesRimet": 0,
-      "copas": 1,
-      "ultimaConquista": 3
     }
   ]
 }
