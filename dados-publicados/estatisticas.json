@@ -1,14 +1,6 @@
 {
   "jogadores": [
     {
-      "id": 3,
-      "nome": "Hans Schorros",
-      "foto": "/uploads/hans-7876a7a4.jpg",
-      "selecao": "",
-      "gols": 0,
-      "assistencias": 0
-    },
-    {
       "id": 4,
       "nome": "Esqueleto de Barras",
       "foto": "/uploads/esqueleto-3cec6386.jpg",
