@@ -811,5 +811,32 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 34,
+    "titulo": "INICIO DO NOVO UNIVERSO",
+    "tituloLista": "",
+    "data": "02 nov 2026",
+    "dataISO": "2026-11-02",
+    "categoria": "UNIVERSO 2",
+    "imagem": "/uploads/inicio-do-universo-2-no-campo-475a21c5.png",
+    "resumo": "",
+    "subtitulo": "A partir desse momento se inicia o novo universo",
+    "paragrafos": [
+      "FEDO SCAFALDI foi o campeão na quantidade de copas do mundo ganhas, com 11 copas do mundo.",
+      "Em segundo lugar, ficou Andrey Malakovtich Djangovsky, que conquistou 10 copas do mundo.",
+      "Em primeiro lugar, Johnny Schorros foi o melhor jogador do universo, marcando 216 gols e 40 assistências, tendo jogado pelas seleções de El Salvador, Macedônia do Norte, Moldávia, Somália, Timor-leste, Brunei, Gibraltar.",
+      "Em segundo, Cláudio Goodbarras marcou 123 gols e 51 assistências. Jogou pelos times da Botsuana, Jamaica, Cazaquistão, Panamá, Vietnã, San Marino, Gibraltar, Laos.",
+      "Em terceiro, Johnny Schorros amigo de Andrey, que marcou 112\tgols e 63 assistências Cazaquistão, Panamá, Vietnã, San Marino, Gibraltar, Laos.",
+      "Menções honrosas: \nEverto Camargo 87 gols e 41 assistências,\nClausio Goodbarras 57 gols e 41 assistências,\nHans Chow 31 gols e 33 assistências.",
+      "O maior time do universo foi mais uma vez a Macedônia do Norte, contando com 7 copas do mundo.",
+      "San Marino também foi destaque, sendo a primeira seleção a alavancar 4 copas do mundo praticamente seguidas (com uma derrota entre essas 4 copas). Vale lembrar que as 4 foram conquistadas com Cláusio Goodbarras.",
+      "A maior decepção desse universo foi com Hans Chow, tendo falhado tudo que tentou depois de suas duas primeiras copas.",
+      "Cláudio Goodbarras foi o maior pipoqueiro desse universo e foi motivo de transtornos para o técnico russo Andrey."
+    ],
+    "imagemInfo": "/uploads/copas-do-mundo-ranking-universo-1-0dc4f701.png",
+    "legenda": "COPAS DO MUNDO DO UNIVERSO 1",
+    "destaque": true,
+    "publicado": true
   }
 ]
