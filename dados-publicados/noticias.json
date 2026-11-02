@@ -464,10 +464,11 @@
   {
     "id": 21,
     "titulo": "Macedônia do Norte conquista uma segunda copa!!",
+    "tituloLista": "",
     "data": "26 set 2026",
     "dataISO": "2026-09-26",
     "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
-    "imagem": "/images/macedonia bi campea.jpg",
+    "imagem": "/uploads/celebracao-dos-campeoes-da-macedonia-do--52083c11.png",
     "resumo": "A Macedônia da Morte",
     "subtitulo": "Macedônia do Norte, a possível nova febre do futebol mundial?",
     "paragrafos": [
@@ -482,9 +483,8 @@
     ],
     "imagemInfo": "",
     "legenda": "",
-    "destaque": true,
-    "publicado": true,
-    "tituloLista": ""
+    "destaque": false,
+    "publicado": true
   },
   {
     "id": 22,
