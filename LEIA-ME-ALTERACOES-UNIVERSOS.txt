@@ -1,0 +1,25 @@
+ALTERAÇÕES IMPLEMENTADAS - UNIVERSO 1 / UNIVERSO 2
+
+- O Universo 1 continua usando os arquivos de dados publicados existentes:
+  dados-publicados/noticias.json
+  dados-publicados/ranking.json
+  dados-publicados/estatisticas.json
+  Nenhum desses arquivos foi alterado.
+
+- O Universo 2 usa arquivos próprios e independentes no GitHub:
+  dados-publicados/universo-2-noticias.json
+  dados-publicados/universo-2-ranking.json
+  dados-publicados/universo-2-estatisticas.json
+  Eles começam vazios e são criados quando o administrador salvar os primeiros dados.
+
+- O seletor de universo foi adicionado às páginas públicas e ao painel administrativo.
+- A API pública e as rotas de administração leem/gravam dados conforme o universo selecionado.
+- O seletor do painel administrativo atualiza Publicações, Ranking e Estatísticas; antes de trocar, avisa se houver alterações não salvas.
+- A seleção é mantida durante a navegação no mesmo navegador.
+- A seção/página Apostas foi removida da pasta pública e dos menus.
+- Os dados publicados e iniciais originais foram preservados sem alterações.
+
+IMPORTANTE
+- Este pacote contém somente os arquivos do projeto para revisão.
+- Nenhum deploy foi feito e nenhuma configuração/credencial do Vercel ou GitHub foi modificada.
+- Antes de publicar, faça backup do repositório e revise/teste no preview do Vercel.

@@ -1,0 +1,469 @@
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    /* --cor-nav: linear-gradient(
+        135deg,
+        #033b68 0%,
+        #044c84 50%,
+        #0565a8 100%
+    ); */
+    --cor-nav: #d1b725;
+}
+
+html, body {
+    overflow-x: hidden;
+    background-color: white !important;
+    color-scheme: light only;
+}
+
+
+body {
+    background-color: rgb(243, 243, 243);
+    color: black !important;
+}
+
+main {
+    padding-top: 40px;
+
+}
+
+#principal img {
+    opacity: 0;
+    transition: opacity 800ms ease;
+}
+
+#principal img.show {
+    opacity: 1;
+}
+
+nav {
+    height: 80px;
+    padding: 0 6%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--cor-nav);
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+
+    position: relative;
+    z-index: 1000;
+}
+
+nav h1 {
+    font-size: 20px;
+}
+
+nav a {
+    padding: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+#categoria {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-left: 4px solid white;
+    font-size: 13px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.caixa-news {
+    padding: 50px;
+    margin: 40px auto;
+    gap: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: white;
+
+    background: var(--cor-nav);
+
+    /* background: linear-gradient(
+        135deg,
+        #033b68,
+        #0565a8
+    ); */
+
+    width: 90%;
+    max-width: 1200px;
+
+    border-radius: 15px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.direita-main img {
+    border-radius: 20px;
+    width: 500px;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.8s ease;
+}
+
+.direita-main img:hover {
+    transform: scale(1.04);
+}
+
+.esquerda-main p {
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.esquerda-main h1 {
+    padding-top: 20px;
+    font-size: 42px;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.texto {
+    padding-bottom: 100px;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.stock-ticker img {
+    width: 40px;
+    padding-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.stock-ticker {
+    color: #04223a;
+    margin-inline: 4px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 15px;
+    padding-block: 8px;
+    border-block: 2px solid;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    gap: 2rem;
+}
+
+
+.stock-ticker ul {
+
+    list-style: none;
+    flex-shrink: 0;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    animation: scroll 30s linear infinite;
+}
+
+.barras-noticias {
+    display: flex;
+    gap: 8px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.barra {
+    flex: 1;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    background-color: white;
+}
+
+.barra.ativa::before {
+    width: 100%;
+    transition: width 5s linear;
+}
+
+
+@keyframes scroll {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+button {
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+
+    background-color: white;
+    color: var(--cor-secundaria, #044c84);
+
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+button a{
+    text-decoration: none;
+    color: black;
+}
+
+button:hover {
+    background-color: rgb(218, 216, 216);
+}
+
+.copaMoments {
+    text-align: center;
+    color: #04223a;
+}
+
+.images-moments {
+    padding: 60px 20px 100px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.imagem-moment img {
+    width: 350px;
+    max-width: 100%;
+    height: 500px;
+    object-fit: cover;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.imagem-moment img:hover {
+    transform: scale(1.05);
+}
+
+.foot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: white;
+    /* background-color: #044C84; */
+    background-color: var(--cor-secundaria, #4d8bf0);
+    width: 100%;
+    height: 200px;
+}
+
+.hamburger {
+    display: none;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    font-size: 30px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.hamburger:hover {
+    background: transparent;
+    transform: scale(1.1);
+}
+
+    #logo a {
+        color: white;
+        text-decoration: none;
+
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 2px;
+
+        transition: 0.3s ease;
+    }
+
+    #logo a:hover {
+        opacity: 0.8;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .menu a {
+        position: relative;
+
+        padding: 28px 18px;
+
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+
+        transition: 0.3s ease;
+    }
+
+    .menu a::after {
+    content: "";
+
+    position: absolute;
+    left: 15%;
+    bottom: 17px;
+
+    width: 0;
+    height: 2px;
+
+    background-color: white;
+
+    transition: width 0.3s ease;
+    }
+
+    .menu a:hover::after {
+        width: 70%;
+    }
+
+    .menu a:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    }
+
+@media (max-width: 768px) {
+
+    nav {
+        position: relative;
+        justify-content: space-between;
+        gap: 0px;
+        padding: 15px 10px;
+    }
+/*  */
+    .esquerda-main h1 {
+        font-size: 28px;
+    }
+
+    #logo a {
+        font-size: 24px;
+    }
+
+    .hamburger {
+        display: block;
+        background: none;
+        color: white;
+        border: none;
+        font-size: 30px;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 0;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--cor-secundaria, #044C84);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    .menu.ativo {
+        display: flex;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .caixa-news {
+        flex-direction: column;
+        padding: 20px;
+        margin: 20px auto;
+        gap: 20px;
+        width: 90%;
+    }
+    .direita-main img {
+        width: 100%;
+        height: auto;
+    }
+    .imagem-moment img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+
+    .foot {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light;
+    }
+
+    html,
+    body {
+        background-color: white !important;
+        color: black !important;
+    }
+}
+
+/* Seletor de universo */
+.seletor-universo{display:flex;align-items:center;gap:6px;padding:0 10px;color:#fff;font-size:13px;font-weight:700;white-space:nowrap}
+.seletor-universo select{max-width:125px;padding:8px 9px;border:1px solid rgba(255,255,255,.65);border-radius:6px;background:rgba(0,0,0,.12);color:#fff;font:inherit;cursor:pointer}
+.seletor-universo option{color:#222;background:#fff}
+@media(max-width:768px){.seletor-universo{justify-content:center;padding:10px 0}.seletor-universo select{max-width:160px}}

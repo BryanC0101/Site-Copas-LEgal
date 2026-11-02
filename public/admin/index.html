@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="color-scheme" content="light">
+    <title>Administração — PES21</title>
+    <link rel="stylesheet" href="/tema.css">
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+    <div id="carregando" class="centro">Carregando…</div>
+
+    <!-- Primeiro acesso -->
+    <main id="tela-setup" class="centro" hidden>
+        <form id="form-setup" class="cartao estreito" autocomplete="off">
+            <h1>Criar administrador</h1>
+            <p class="ajuda">Primeiro acesso. Digite o <strong>código de configuração</strong> que aparece no terminal
+                (ou nos logs) do servidor e escolha seu usuário e senha.</p>
+            <label>Código de configuração
+                <input name="codigo" required autocomplete="off" spellcheck="false">
+            </label>
+            <label>Usuário
+                <input name="usuario" required minlength="3" maxlength="40" autocomplete="username">
+            </label>
+            <label>Senha (mínimo 10 caracteres)
+                <input name="senha" type="password" required minlength="10" autocomplete="new-password">
+            </label>
+            <label>Repita a senha
+                <input name="senha2" type="password" required minlength="10" autocomplete="new-password">
+            </label>
+            <p class="erro" data-erro></p>
+            <button class="primario" type="submit">Criar e entrar</button>
+        </form>
+    </main>
+
+    <!-- Login -->
+    <main id="tela-login" class="centro" hidden>
+        <form id="form-login" class="cartao estreito">
+            <h1>Área de administração</h1>
+            <label>Usuário
+                <input name="usuario" required autocomplete="username">
+            </label>
+            <label>Senha
+                <input name="senha" type="password" required autocomplete="current-password">
+            </label>
+            <p class="erro" data-erro></p>
+            <button class="primario" type="submit">Entrar</button>
+            <a class="voltar" href="/">← Voltar ao site</a>
+        </form>
+    </main>
+
+    <!-- Painel -->
+    <div id="tela-painel" hidden>
+        <header class="topo">
+            <strong class="marca">PES21 <span>Administração</span></strong>
+            <label class="admin-universo">Editar dados de: <select id="universo-admin" aria-label="Universo dos dados"><option value="1">Universo 1</option><option value="2">Universo 2</option></select></label>
+            <nav class="abas" id="abas">
+                <button data-aba="posts" class="ativa">Publicações</button>
+                <button data-aba="editor">Nova publicação</button>
+                <button data-aba="ranking">Ranking de Copas</button>
+                <button data-aba="estatisticas">Estatísticas</button>
+                <button data-aba="aparencia">Aparência</button>
+                <button data-aba="conta">Conta</button>
+            </nav>
+            <span class="topo-direita">
+                <a id="topo-ver-site" href="/?universo=1" target="_blank" rel="noopener">Ver site ↗</a>
+                <button id="btn-sair" class="secundario">Sair</button>
+            </span>
+        </header>
+
+        <main class="conteudo">
+            <!-- Lista -->
+            <section id="aba-posts">
+                <div class="barra-titulo">
+                    <h2>Publicações</h2>
+                    <input id="busca-posts" type="search" placeholder="Buscar pelo título…">
+                    <button class="primario" id="btn-nova">+ Nova publicação</button>
+                </div>
+                <p class="ajuda" id="aviso-destaques"></p>
+                <div id="lista-posts" class="lista"></div>
+            </section>
+
+            <!-- Editor -->
+            <section id="aba-editor" hidden>
+                <h2 id="titulo-editor">Nova publicação</h2>
+                <form id="form-post" class="cartao">
+                    <label>Título
+                        <input name="titulo" required maxlength="250">
+                    </label>
+                    <label>Título curto para a lista de notícias (opcional)
+                        <input name="tituloLista" maxlength="250">
+                        <small class="ajuda">Se ficar vazio, a lista usa o título acima.</small>
+                    </label>
+                    <label>Subtítulo
+                        <textarea name="subtitulo" rows="2" maxlength="700"></textarea>
+                    </label>
+
+                    <div class="duas">
+                        <label>Categoria (etiqueta do carrossel)
+                            <input name="categoria" maxlength="100">
+                        </label>
+                        <label>Data
+                            <input name="dataISO" type="date" required>
+                        </label>
+                    </div>
+
+                    <div class="campo-imagem" data-campo="imagem">
+                        <span class="rotulo">Imagem principal</span>
+                        <div class="imagem-linha">
+                            <img class="mini" alt="" hidden>
+                            <button type="button" class="secundario" data-escolher>Escolher / enviar imagem</button>
+                        </div>
+                    </div>
+
+                    <label>Texto da notícia
+                        <textarea name="texto" rows="14" required></textarea>
+                        <small class="ajuda">Separe os parágrafos com uma linha em branco. Para uma citação, escreva-a
+                            em um parágrafo próprio.</small>
+                    </label>
+
+                    <div class="campo-imagem" data-campo="imagemInfo">
+                        <span class="rotulo">Imagem do rodapé da notícia (opcional)</span>
+                        <div class="imagem-linha">
+                            <img class="mini" alt="" hidden>
+                            <button type="button" class="secundario" data-escolher>Escolher / enviar imagem</button>
+                            <button type="button" class="link" data-remover hidden>Remover</button>
+                        </div>
+                    </div>
+                    <label>Legenda dessa imagem
+                        <input name="legenda" maxlength="400">
+                    </label>
+
+                    <fieldset>
+                        <legend>Carrossel da página inicial</legend>
+                        <label class="check"><input type="checkbox" name="destaque"> Mostrar esta publicação no
+                            carrossel da home</label>
+                        <label>Texto curto do carrossel (se vazio, usa o subtítulo)
+                            <input name="resumo" maxlength="400">
+                        </label>
+                    </fieldset>
+
+                    <label>Status
+                        <select name="publicado">
+                            <option value="1">Publicado (visível no site)</option>
+                            <option value="0">Rascunho (só você vê)</option>
+                        </select>
+                    </label>
+
+                    <p class="erro" data-erro></p>
+                    <div class="acoes">
+                        <button type="submit" class="primario">Salvar</button>
+                        <button type="button" class="secundario" id="btn-cancelar-post">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Ranking de Copas -->
+            <section id="aba-ranking" hidden>
+                <div class="barra-titulo">
+                    <h2>Ranking de Copas</h2>
+                    <button class="primario" type="button" id="btn-salvar-ranking">Salvar ranking</button>
+                </div>
+                <p class="ajuda">Use <strong>+</strong> quando uma seleção ganhar uma Copa do Mundo. Ao salvar, o ranking do
+                    site se reorganiza sozinho: quem tem mais copas fica por cima e, em caso de empate, fica na frente
+                    quem chegou àquele número primeiro. Seleções com 0 copas não aparecem no site. A ordem mostrada aqui só é atualizada depois de salvar.</p>
+                <p class="ok" id="ok-ranking"></p>
+                <p class="erro" id="erro-ranking"></p>
+
+                <form id="form-nova-selecao" class="cartao linha-nova" autocomplete="off">
+                    <h3>Adicionar seleção</h3>
+                    <div class="nova-grade">
+                        <label>Nome da seleção
+                            <input name="nome" maxlength="60" required>
+                        </label>
+                        <div class="campo-bandeira">
+                            <span class="rotulo">Bandeira</span>
+                            <div class="imagem-linha">
+                                <img id="nova-bandeira" class="bandeira-mini" alt="" hidden>
+                                <button type="button" class="secundario" id="btn-nova-bandeira">Escolher bandeira</button>
+                            </div>
+                        </div>
+                        <label>Copas
+                            <input name="copas" type="number" min="0" max="99" value="0">
+                        </label>
+                        <button type="submit" class="primario">Adicionar</button>
+                    </div>
+                    <p class="erro" data-erro></p>
+                </form>
+
+                <div id="lista-ranking" class="lista"></div>
+            </section>
+
+            <!-- Estatísticas dos jogadores -->
+            <section id="aba-estatisticas" hidden>
+                <div class="barra-titulo">
+                    <h2>Estatísticas dos jogadores</h2>
+                    <input id="busca-jogadores" type="search" placeholder="Buscar jogador…">
+                    <button class="secundario" type="button" id="btn-novo-jogador">+ Novo jogador</button>
+                    <button class="primario" type="button" id="btn-salvar-stats">Salvar estatísticas</button>
+                </div>
+                <p class="ajuda">Edite gols e assistências direto na tabela e clique em <strong>Salvar</strong>. Na página
+                    pública a ordem é automática: quem tem mais gols (ou assistências, conforme o filtro) fica por cima.</p>
+                <p class="ok" id="ok-stats"></p>
+                <p class="erro" id="erro-stats"></p>
+                <div id="lista-jogadores" class="lista"></div>
+            </section>
+
+            <!-- Aparência -->
+            <section id="aba-aparencia" hidden>
+                <h2>Aparência</h2>
+                <form id="form-aparencia" class="cartao">
+                    <h3>Cores de todas as páginas</h3>
+                    <div class="cores">
+                        <label>Cor principal
+                            <span class="cor-linha"><input type="color" id="cor-principal"><input id="cor-principal-hex"
+                                    maxlength="7" spellcheck="false"></span>
+                            <small class="ajuda">Barra de navegação e caixa de destaque da home.</small>
+                        </label>
+                        <div>
+                            <label class="check"><input type="checkbox" id="usar-secundaria"> Personalizar a cor
+                                secundária</label>
+                            <span class="cor-linha"><input type="color" id="cor-secundaria" disabled><input
+                                    id="cor-secundaria-hex" maxlength="7" spellcheck="false" disabled></span>
+                            <small class="ajuda">Rodapé, menu do celular e texto do botão “Leia mais”. Desmarcado = cores
+                                originais do site.</small>
+                        </div>
+                    </div>
+                    <div id="previa-nav" class="previa-nav"><strong>PES21</strong><span>Estatísticas</span><span>Notícias</span><span>Ranking</span></div>
+                    <p class="aviso" id="aviso-contraste" hidden>Essa cor é muito clara: o texto branco da barra pode ficar
+                        difícil de ler.</p>
+                    <button type="button" class="link" id="btn-cores-padrao">Restaurar cores originais</button>
+
+                    <h3>Bandeira da “Campeã mundial”</h3>
+                    <div class="imagem-linha">
+                        <img id="previa-bandeira" class="bandeira" alt="Bandeira atual">
+                        <div class="coluna">
+                            <label class="botao-arquivo secundario">Enviar bandeira do meu computador
+                                <input type="file" id="arquivo-bandeira" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden>
+                            </label>
+                            <button type="button" class="secundario" id="btn-bandeira-biblioteca">Escolher da biblioteca</button>
+                            <button type="button" class="link" id="btn-bandeira-padrao">Restaurar bandeira original</button>
+                        </div>
+                    </div>
+
+                    <p class="erro" data-erro></p>
+                    <p class="ok" data-ok></p>
+                    <div class="acoes">
+                        <button type="submit" class="primario">Salvar aparência</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Conta -->
+            <section id="aba-conta" hidden>
+                <h2>Conta</h2>
+                <form id="form-senha" class="cartao estreito">
+                    <h3>Trocar senha</h3>
+                    <label>Senha atual
+                        <input name="atual" type="password" required autocomplete="current-password">
+                    </label>
+                    <label>Nova senha (mínimo 10 caracteres)
+                        <input name="nova" type="password" required minlength="10" autocomplete="new-password">
+                    </label>
+                    <label>Repita a nova senha
+                        <input name="nova2" type="password" required minlength="10" autocomplete="new-password">
+                    </label>
+                    <p class="erro" data-erro></p>
+                    <p class="ok" data-ok></p>
+                    <button type="submit" class="primario">Trocar senha</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Biblioteca de imagens -->
+    <div id="modal" class="modal" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true" aria-label="Biblioteca de imagens">
+            <div class="modal-topo">
+                <h3>Imagens</h3>
+                <label class="botao-arquivo primario">Enviar do meu computador
+                    <input type="file" id="arquivo-upload" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml" hidden>
+                </label>
+                <select id="filtro-imagens">
+                    <option value="todas">Todas</option>
+                    <option value="uploads">Enviadas por mim</option>
+                    <option value="flags">Bandeiras</option>
+                    <option value="site">Do site</option>
+                </select>
+                <button type="button" class="secundario" id="btn-fechar-modal">Fechar</button>
+            </div>
+            <p class="erro" data-erro></p>
+            <div id="grade-imagens" class="grade"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+    <script src="/admin/admin.js"></script>
+</body>
+
+</html>

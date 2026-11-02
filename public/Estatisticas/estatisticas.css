@@ -1,0 +1,386 @@
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    --cor-nav: linear-gradient(
+        90deg,
+        /* #0046aee8 0%,
+        #0046AE 30%,
+        #b6334db2 70%,
+        #91132cfd 100% */
+        #d1b725 100%
+    );
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: rgb(243, 243, 243);
+}
+
+
+nav {
+    height: 80px;
+    padding: 0 6%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--cor-nav);
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+
+    position: relative;
+    z-index: 1000;
+}
+
+
+nav h1 {
+    font-size: 20px;
+}
+
+nav a {
+    padding: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding-top: 40px;
+}
+
+
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+table {
+    box-shadow:
+        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    width: 100%;
+    border-collapse: collapse;
+
+    background-color: #111827;
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #1d4ed8;
+}
+
+th {
+    padding: 18px 15px;
+    text-align: center;
+
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #263244;
+    transition: 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #1a2638;
+}
+
+td {
+    padding: 14px 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+td:nth-child(2) {
+    text-align: left;
+    font-weight: bold;
+}
+
+table img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+td:nth-child(4) {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#logo a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    transition: 0.3s ease;
+}
+
+#logo a:hover {
+    opacity: 0.8;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu a {
+    position: relative;
+
+    padding: 28px 18px;
+
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    transition: 0.3s ease;
+}
+
+.menu a::after {
+    content: "";
+
+    position: absolute;
+    left: 15%;
+    bottom: 17px;
+
+    width: 0;
+    height: 2px;
+
+    background-color: white;
+
+    transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+    width: 70%;
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.hamburger {
+    display: none;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    font-size: 30px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.hamburger:hover {
+    background: transparent;
+    transform: scale(1.1);
+}
+
+.filtro {
+    padding-bottom: 20px;
+}
+
+#ordenar {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    border: 2px solid gray;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+
+
+    nav {
+        position: relative;
+        justify-content: space-between;
+        gap: 0;
+
+        padding: 15px 20px;
+    }
+
+    nav h1 {
+        font-size: 20px;
+    }
+
+    #logo a {
+        font-size: 24px;
+        padding: 0;
+    }
+
+    .hamburger {
+        display: block;
+
+        background: none;
+        color: white;
+
+        border: none;
+
+        font-size: 30px;
+        padding: 5px;
+
+        cursor: pointer;
+        line-height: 1;
+    }
+
+
+    .menu {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+
+        background: var(--cor-secundaria, linear-gradient(180deg, rgba(4, 76, 132, 1) 0%, rgba(4, 84, 148, 1) 50%, rgba(4, 76, 132, 1) 100%));
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: 0;
+        padding: 10px 0;
+
+        z-index: 1000;
+    }
+
+    .menu.ativo {
+        display: flex;
+    }
+
+    .menu a {
+        width: 100%;
+
+        text-align: center;
+
+        padding: 15px;
+
+        font-size: 16px;
+    }
+
+    .menu a::after {
+        display: none;
+    }
+
+
+    main {
+        width: 95%;
+        margin: 30px auto;
+        padding-top: 20px;
+    }
+
+
+    @media (max-width: 768px) {
+
+    .table-container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    table {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+    }
+
+    th {
+        padding: 8px 3px;
+        font-size: 9px;
+        letter-spacing: 0;
+    }
+
+    td {
+        padding: 8px 3px;
+        font-size: 11px;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(2) {
+        font-size: 11px;
+    }
+
+    td:nth-child(4) {
+        font-size: 14px;
+    }
+
+    table img {
+        width: 30px;
+        height: 30px;
+        margin-right: 3px;
+    }
+}
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Seletor de universo */
+.seletor-universo{display:flex;align-items:center;gap:6px;padding:0 10px;color:#fff;font-size:13px;font-weight:700;white-space:nowrap}
+.seletor-universo select{max-width:125px;padding:8px 9px;border:1px solid rgba(255,255,255,.65);border-radius:6px;background:rgba(0,0,0,.12);color:#fff;font:inherit;cursor:pointer}
+.seletor-universo option{color:#222;background:#fff}
+@media(max-width:768px){.seletor-universo{justify-content:center;padding:10px 0}.seletor-universo select{max-width:160px}}

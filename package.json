@@ -1,0 +1,12 @@
+{
+  "name": "site-copas",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site das Copas do Mundo com área de administração",
+  "scripts": {
+    "dev": "node dev-server.js"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/noticias/noticias.css">
+    <link rel="stylesheet" href="/tema.css">
+
+    <title>Notícia</title>
+</head>
+
+<body>
+
+    <nav>
+        <div id="logo">
+            <a href="/index.html">PES21</a>
+        </div>
+        <button class="hamburger" id="hamburger">
+            ☰
+        </button>
+
+        <div class="menu" id="menu">
+            <a href="/Estatisticas/estatisticas.html">Estatísticas</a>
+            <a href="/noticias/portalnews.html">Notícias</a>
+            <a href="/Ranking/ranking.html">Ranking</a>
+        </div>
+    </nav>
+
+
+    <main>
+
+        <div class="main-cima">
+
+            <div id="retangulo"></div>
+
+            <img id="imagem-principal" src="" alt="">
+
+        </div>
+
+
+        <div class="texto">
+
+            <h1 id="titulo"></h1>
+
+            <h5>Publicado</h5>
+
+            <h5 id="data"></h5>
+
+            <div id="line-decoration"></div>
+
+            <h2 id="subtitulo"></h2>
+
+            <div id="conteudo"></div>
+
+        </div>
+
+
+        <div class="imagem-info">
+
+            <img id="imagem-info" src="" alt="">
+
+            <p id="legenda"></p>
+
+        </div>
+
+    </main>
+    <script src="/universo.js"></script>
+    <script src="noticias.js"></script>
+
+    <div id="disqus_thread"></div>
+
+    <script>
+        var disqus_config = function () {
+            this.page.url = window.location.href;
+            this.page.identifier = 'noticia-' + new URLSearchParams(window.location.search).get('id');
+        };
+
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://site-de-copas.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+    <noscript>
+        Ative o JavaScript para visualizar os comentários.
+    </noscript>
+
+</body>
+
+</html>

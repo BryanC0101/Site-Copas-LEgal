@@ -1,0 +1,351 @@
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    /* --cor-nav: linear-gradient(
+        135deg,
+        #033b68 0%,
+        #044c84 50%,
+        #0565a8 100%
+    ); */
+    --cor-nav: linear-gradient(
+        90deg,
+        /* #0046aee8 0%,
+        #0046AE 30%,
+        #b6334db2 70%,
+        #91132cfd 100% */
+        #d1b725 100%
+    );
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+nav {
+    height: 80px;
+    padding: 0 6%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--cor-nav);
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+
+    position: relative;
+    z-index: 1000;
+}
+
+nav h1 {
+    font-size: 30px;
+}
+
+nav a {
+    padding: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    font-size: 30px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.hamburger:hover {
+    background: transparent;
+    transform: scale(1.1);
+}
+
+
+main h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #04223a;
+    text-align: center;
+}
+
+.tabela {
+    border: 3px solid rgb(99, 98, 98);
+    margin: 20px;
+    overflow-x: auto;
+}
+
+.cups {
+    background: #cfcfcf;
+    background: linear-gradient(
+        90deg,
+        rgba(207, 207, 207, 1) 0%,
+        rgba(207, 207, 207, 0.65) 50%,
+        rgba(207, 207, 207, 0.33) 100%
+    );
+    padding-right: 20px;
+    padding-left: 60px;
+    position: relative;
+}
+
+#julesrimet {
+    width: 45px;
+    cursor: pointer;
+}
+
+#copadomundo {
+    width: 55px;
+    cursor: pointer;
+}
+
+#julesrimet,
+#copadomundo {
+    transition: transform 0.2s ease;
+}
+
+#julesrimet:hover,
+#copadomundo:hover {
+    transform: scale(1.15);
+}
+
+
+.selecao {
+    font-size: 15px;
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 180px 100px 600px;
+    align-items: center;
+    gap: 50px;
+}
+
+.selecao h1 {
+    padding-right: 20px;
+}
+
+.selecao img {
+    width: 150px;
+    max-width: 100%;
+}
+
+#logo a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    transition: 0.3s ease;
+}
+
+#logo a:hover {
+    opacity: 0.8;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu a {
+    position: relative;
+
+    padding: 28px 18px;
+
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    transition: 0.3s ease;
+}
+
+.menu a::after {
+    content: "";
+
+    position: absolute;
+    left: 15%;
+    bottom: 17px;
+
+    width: 0;
+    height: 2px;
+
+    background-color: white;
+
+    transition: width 0.3s ease;
+}
+
+.menu a:hover::after {
+    width: 70%;
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+
+@media (max-width: 768px) {
+
+
+    nav {
+        position: relative;
+        justify-content: space-between;
+        gap: 0;
+        padding: 15px 20px;
+    }
+
+    nav h1 {
+        font-size: 24px;
+    }
+
+    .hamburger {
+        display: block;
+        background: none;
+        color: white;
+        border: none;
+        font-size: 30px;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 0;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--cor-secundaria, #044C84);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    .menu.ativo {
+        display: flex;
+    }
+
+    .menu a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .menu a::after {
+        display: none;
+    }
+
+
+
+    main h1 {
+        font-size: 25px;
+        padding: 15px;
+    }
+
+
+
+    .tabela {
+        margin: 15px 10px;
+        overflow-x: auto;
+    }
+
+
+    .cups {
+        padding: 20px;
+    }
+
+    #julesrimet {
+        width: 30px;
+    }
+
+    #copadomundo {
+        width: 30px;
+        height: 68px;
+    }
+
+
+
+    .selecao {
+        font-size: 14px;
+        margin: 30px 15px;
+        display: grid;
+        grid-template-columns: 80px 60px 1fr;
+        gap: 15px;
+    }
+
+    .selecao h1 {
+        padding-right: 5px;
+        font-size: 18px;
+    }
+
+    .selecao img {
+        width: 60px;
+        max-width: 100%;
+    }
+
+
+
+    .direita-main img {
+        width: 100%;
+        height: auto;
+    }
+
+    .imagem-moment img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* Seletor de universo */
+.seletor-universo{display:flex;align-items:center;gap:6px;padding:0 10px;color:#fff;font-size:13px;font-weight:700;white-space:nowrap}
+.seletor-universo select{max-width:125px;padding:8px 9px;border:1px solid rgba(255,255,255,.65);border-radius:6px;background:rgba(0,0,0,.12);color:#fff;font:inherit;cursor:pointer}
+.seletor-universo option{color:#222;background:#fff}
+@media(max-width:768px){.seletor-universo{justify-content:center;padding:10px 0}.seletor-universo select{max-width:160px}}

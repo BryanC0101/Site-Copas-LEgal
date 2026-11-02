@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="estatisticas.css">
+    <link rel="stylesheet" href="/tema.css">
+    <title>Estatísticas</title>
+</head>
+<!-- ff -->
+
+<body>
+    <nav>
+        <div id="logo">
+            <a href="/index.html">PES21</a>
+        </div>
+        <button class="hamburger" id="hamburger">
+            ☰
+        </button>
+
+        <div class="menu" id="menu">
+            <a href="/Estatisticas/estatisticas.html">Estatísticas</a>
+            <a href="/noticias/portalnews.html">Notícias</a>
+            <a href="/Ranking/ranking.html">Ranking</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="filtro">
+            <label for="ordenar">Classificar por:</label>
+            <select id="ordenar">
+                <option value="gols">Gols</option>
+                <option value="assistencias">Assistências</option>
+            </select>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Jogador</th>
+                    <th>Seleção</th>
+                    <th>Gols</th>
+                    <th>Assistências</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-artilharia"></tbody>
+        </table>
+    </main>
+
+    <script src="/universo.js"></script>
+    <script src="estatisticas.js"></script>
+</body>
+
+</html>
