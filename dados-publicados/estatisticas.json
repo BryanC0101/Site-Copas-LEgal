@@ -12,7 +12,7 @@
       "id": 4,
       "nome": "Esqueleto de Barras",
       "foto": "/uploads/esqueleto-3cec6386.jpg",
-      "selecao": "",
+      "selecao": "Gibraltar",
       "gols": 0,
       "assistencias": 0
     },
@@ -21,15 +21,15 @@
       "nome": "Johnny Schorros",
       "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
       "selecao": "Paquistão",
-      "gols": 0,
-      "assistencias": 0
+      "gols": 34,
+      "assistencias": 1
     },
     {
       "id": 2,
       "nome": "Cláudio Goodbarras",
       "foto": "/Estatisticas/imagesProfile/claudioProfile.png",
       "selecao": "San Marino, Gibraltar",
-      "gols": 0,
+      "gols": 25,
       "assistencias": 0
     }
   ]
