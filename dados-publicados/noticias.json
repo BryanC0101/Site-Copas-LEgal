@@ -838,5 +838,32 @@
     "legenda": "COPAS DO MUNDO DO UNIVERSO 1",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 35,
+    "titulo": "Espanha é Tri campeã numa copa recheada de surpresas",
+    "tituloLista": "",
+    "data": "02 nov 2026",
+    "dataISO": "2026-11-02",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/uploads/captura-de-tela-2026-11-02-212503-2bf7e27b.png",
+    "resumo": "",
+    "subtitulo": "Espanha se torna TRI campeã, mas a copa possui outros destaques",
+    "paragrafos": [
+      "A Espanha de Luis de la Fuente novamente surpreende conquistando mais uma copa do mundo para a alegria de seus torcedores.",
+      "Nada mais justo, pois o time jogou com firmeza, não se deixou abalar em momento algum e chegou na final contra um time também extremamente competitivo, a França.",
+      "A partida terminou no placar de 2x1 para a Espanha e novamente reafirmou a capacidade técnica do time espanhol. É surpreendente a capacidade de jogadores como Lamine Yamal, Rodri e Oyarzabal de conduzirem os jogos de maneira maleável, flexível com as táticas do adversário, é realmente impressionante.",
+      "Mas além disso, vale um destaque para uma seleção e dois jogadores que protagonizaram momentos épicos nessa edição de copa do mundo.",
+      "A seleção do Paquistão conseguiu, pela primeira vez, chegar as quartas de final do evento, batendo seleções tradicionais do esporte no caminho. A chave por trás desse sucesso foi um jogador que pela primeira vez jogou por seu país, Johnny Schorros, de apenas 17 anos, que gerou momentos e cenas de tirar o folego na copa.",
+      "Sua participação não foi apenas auxiliadora, ela foi crucial para a chegada do time até o ponto que chegou. O jovem marcou 11 gols apenas nesta edição, repetindo o que o jogador húngaro Sándor Kocsis fez na edição de 1954.",
+      "Infelizmente, Johnny Schorros se lesionou no meio da partida de 16-avos mas, por imprudência completa do técnico da seleção do Paquistão, o italiano Fedo Scafaldi, continuou jogando por suas ordens mesmo machucado e sofreu outra lesão minutos antes da partida acabar. A jovem promessa foi obrigado a se ausentar dos campos já nas oitavas de final, o que, a principio, não foi grande problema pois a seleção angariou a vitória, mas teve dificuldades nas quartas de final e caiu. Nunca saberemos o que teria acontecido caso essa figura em ascendência tivesse continuado jogando.",
+      "Em outra seleção, a de Gibraltar, o que só por ter conseguido um espaço para jogar uma copa do mundo já havia sido impressionante, colocou também uma figura em destaque, um jovem rapaz chamado Cláudio Goodbarras, também de 17 anos. \nLamentavelmente, Gibraltar foi eliminado já nos 16-avos, com uma atuação bem diferente da jovem promessa, ou seja, bem abaixo das espectativas construidas em cima do jogador durante a fase de grupos inicial.\nCláudio, apesar de tudo, também chegou a marca de 11 gols feitos nesta copa em sua primeira participação, o que coloca ele como grande figura em ascendência para as próximas edições e uma jovem lenda viva no mural dos maiores participantes de todas as copas já feitas.",
+      "De qualquer forma, Gibraltar fez uma bela campanha para chegar nas eliminatórias, e sem Cláudio Goodbarras, nada disso seria possível.",
+      "Com tantas surpresas, é prudente botar um olho no Goodbarras e outro no Schorros e ver onde cada um desses chegam."
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": true,
+    "publicado": true
   }
 ]
