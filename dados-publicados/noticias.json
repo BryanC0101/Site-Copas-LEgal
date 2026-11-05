@@ -865,5 +865,27 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 36,
+    "titulo": "O TETRA DE UMA SELEÇÃO EXCEPCIONAL!!",
+    "tituloLista": "",
+    "data": "05 nov 2026",
+    "dataISO": "2026-11-05",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/uploads/captura-de-tela-2026-11-02-222933-03bc078b.png",
+    "resumo": "",
+    "subtitulo": "",
+    "paragrafos": [
+      "A Espanha é simplesmente imbatível! conquistou sua terceira copa do mundo seguida e agora é tetracamepã.",
+      "Quem diria que essa seleção, que em tempos anteriores no século passado era apenas mais uma entre várias, sem destaque, seria essa potência que é demonstrada copa após copa? Bom, esse é o futebol, os tempos mudam e as seleções tradicionais podem perder seu brilho para outras ainda ofuscadas.",
+      "Mas quem fica triste nesta história são os Holandeses, pois pela 4 vezes chegam a final e perdem, num placar de 3x1. E o interessante é que os finalistas foram os mesmos de 2010, apenas alterando agora o placar para uma vitória mais acachapante espanhola.",
+      "-------------------------------",
+      "Outra seleção que deu um show foi a seleção paquistanesa, ao chegar nas semifinais contra a própria Espanha.\nOs leitores devem se recordar que, na edição passada do evento , o Paquistão havia chegado nas quartas de final, demonstrando uma força"
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": false,
+    "publicado": false
   }
 ]
