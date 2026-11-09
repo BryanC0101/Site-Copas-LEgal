@@ -1,13 +1,13 @@
 {
-  "proximaConquista": 7,
+  "proximaConquista": 8,
   "selecoes": [
     {
       "id": 1,
       "nome": "Brasil",
       "bandeira": "/images/flags/brasil.webp",
       "julesRimet": 3,
-      "copas": 2,
-      "ultimaConquista": 0
+      "copas": 3,
+      "ultimaConquista": 7
     },
     {
       "id": 3,
@@ -26,20 +26,20 @@
       "ultimaConquista": 0
     },
     {
-      "id": 8,
-      "nome": "Argentina",
-      "bandeira": "/images/flags/argentina.webp",
-      "julesRimet": 0,
-      "copas": 3,
-      "ultimaConquista": 0
-    },
-    {
       "id": 9,
       "nome": "Espanha",
       "bandeira": "/images/flags/espanha.svg",
       "julesRimet": 0,
       "copas": 4,
       "ultimaConquista": 6
+    },
+    {
+      "id": 8,
+      "nome": "Argentina",
+      "bandeira": "/images/flags/argentina.webp",
+      "julesRimet": 0,
+      "copas": 3,
+      "ultimaConquista": 0
     },
     {
       "id": 11,
