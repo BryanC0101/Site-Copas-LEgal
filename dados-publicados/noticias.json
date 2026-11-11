@@ -934,7 +934,7 @@
     ],
     "imagemInfo": "",
     "legenda": "",
-    "destaque": false,
-    "publicado": false
+    "destaque": true,
+    "publicado": true
   }
 ]
