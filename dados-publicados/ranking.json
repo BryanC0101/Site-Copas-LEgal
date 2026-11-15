@@ -1,5 +1,5 @@
 {
-  "proximaConquista": 8,
+  "proximaConquista": 9,
   "selecoes": [
     {
       "id": 1,
@@ -62,8 +62,8 @@
       "nome": "Inglaterra",
       "bandeira": "/images/flags/inglaterra.webp",
       "julesRimet": 1,
-      "copas": 0,
-      "ultimaConquista": 5
+      "copas": 1,
+      "ultimaConquista": 8
     }
   ]
 }
