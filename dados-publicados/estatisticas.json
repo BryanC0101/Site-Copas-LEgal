@@ -1,10 +1,34 @@
 {
   "jogadores": [
     {
+      "id": 5,
+      "nome": "Joseph Schorros",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
+      "selecao": "Guatemala",
+      "gols": 0,
+      "assistencias": 0
+    },
+    {
+      "id": 6,
+      "nome": "Matteo Vitaioli",
+      "foto": "/Estatisticas/imagesProfile/outro.jpg",
+      "selecao": "Camboja",
+      "gols": 0,
+      "assistencias": 6
+    },
+    {
+      "id": 7,
+      "nome": "Hans Schorros",
+      "foto": "/uploads/hans-7876a7a4.jpg",
+      "selecao": "Paquistão, Palestina",
+      "gols": 0,
+      "assistencias": 4
+    },
+    {
       "id": 4,
       "nome": "Esqueleto de Barras",
       "foto": "/uploads/esqueleto-3cec6386.jpg",
-      "selecao": "Gibraltar, Camboja",
+      "selecao": "Gibraltar, Camboja, Guatemala",
       "gols": 36,
       "assistencias": 0
     },
@@ -12,9 +36,9 @@
       "id": 1,
       "nome": "Johnny Schorros",
       "foto": "/Estatisticas/imagesProfile/johnnyProfile.png",
-      "selecao": "Paquistão",
+      "selecao": "Paquistão, Palestina",
       "gols": 70,
-      "assistencias": 1
+      "assistencias": 2
     },
     {
       "id": 2,
