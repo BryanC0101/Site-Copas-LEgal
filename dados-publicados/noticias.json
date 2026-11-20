@@ -936,5 +936,26 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 38,
+    "titulo": "A COPA VOLTA PRA CASA!! INGLATERRA AGORA É BI CAMPEÃ",
+    "tituloLista": "",
+    "data": "19 nov 2026",
+    "dataISO": "2026-11-19",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/images/flags/inglaterra.webp",
+    "resumo": "",
+    "subtitulo": "Inglaterra vence a Turquia na final e conquista uma merecida copa do mundo.",
+    "paragrafos": [
+      "Desde 1966, ano de sua última e única copa, os ingleses sonham com este momento, o momento em que o futebol inglês estaria novamente no topo do torneio mundial e angariaria mais uma estrela em seu brasão. Dessa vez, vencendo a Turquia na final, trouxeram a alegria para seus mais de milhares de torcedores.",
+      "As habilidades dos jogadores da seleção inglesa são apreciáveis, mas se engana quem cogita apontar que seus jogos foram fáceis, pois já nas quartas de final, tiveram que provar ao máximo sua excelência para vencer uma pequena e explosiva seleção que se chama Camboja.",
+      "O técnico de Camboja, Andrey Malakovitch Djangovsky, havia dito dias antes da partida que não jogaria como time pequeno, e que mostraria que \"mesmo com molengas\" (nas palavras dele) é possível vencer um time tradicional.",
+      "E realmente o time cambojano não deixou passar oportunidades, cumpriu a promessa do treinador e levou os 90 minutos completamente na ofensiva, se dedicando ao máximo aos passes longos para romper com a defesa inglesa. Mas o resultado transformou a Inglaterra em vencedora, e o time cambojano, forte e competitivo, saiu de cabeça erguida, enfrentando o cansaço da partida ofegante que ali se de"
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": false,
+    "publicado": false
   }
 ]
