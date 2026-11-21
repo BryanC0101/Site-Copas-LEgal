@@ -1,5 +1,5 @@
 {
-  "proximaConquista": 9,
+  "proximaConquista": 10,
   "selecoes": [
     {
       "id": 1,
@@ -64,6 +64,14 @@
       "julesRimet": 1,
       "copas": 1,
       "ultimaConquista": 8
+    },
+    {
+      "id": 16,
+      "nome": "Guatemala",
+      "bandeira": "/uploads/flag-of-guatemala-fa0e042a.svg",
+      "julesRimet": 0,
+      "copas": 1,
+      "ultimaConquista": 9
     }
   ]
 }
