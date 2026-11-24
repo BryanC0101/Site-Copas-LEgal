@@ -1,5 +1,5 @@
 {
-  "proximaConquista": 10,
+  "proximaConquista": 11,
   "selecoes": [
     {
       "id": 1,
@@ -72,6 +72,14 @@
       "julesRimet": 0,
       "copas": 1,
       "ultimaConquista": 9
+    },
+    {
+      "id": 17,
+      "nome": "Palestina",
+      "bandeira": "/uploads/flag-of-palestine-svg-6351fb1f.webp",
+      "julesRimet": 0,
+      "copas": 1,
+      "ultimaConquista": 10
     }
   ]
 }
