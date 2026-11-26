@@ -972,5 +972,24 @@
     "legenda": "",
     "destaque": true,
     "publicado": true
+  },
+  {
+    "id": 39,
+    "titulo": "GUATEMALA CAMPEÃ MUNDIAL, que momento!",
+    "tituloLista": "",
+    "data": "26 nov 2026",
+    "dataISO": "2026-11-26",
+    "categoria": "COPA DO MUNDO - FOOTBALL LIFE",
+    "imagem": "/images/johnnycomata├ºa.png",
+    "resumo": "",
+    "subtitulo": "Com um técnico brilhante, emerge uma seleção brilhante",
+    "paragrafos": [
+      "Poucas vezes aconteceram situações tão incríveis como essa no futebol, e desta vez o acontecimento é ainda mais incrível dado o contexto.",
+      "Andrey Malakovitch Djangovsky, grandioso técnico que surgiu em anos recentes, fez sua h"
+    ],
+    "imagemInfo": "",
+    "legenda": "",
+    "destaque": false,
+    "publicado": false
   }
 ]
